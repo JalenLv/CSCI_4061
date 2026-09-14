@@ -37,7 +37,7 @@ QUIZ Output Observations
   - ( ) 3
   - ( ) 4
   - ( ) 5
-  - ( ) 16
+  - (X) 16
 
   Which of the following best describes the relationship between the
   processes created by running this program?
@@ -45,7 +45,7 @@ QUIZ Output Observations
     child, single grand child, etc.
   - ( ) There is a "fan" of processes with a single parent and multiple
     children
-  - ( ) There is a lopsided "tree" of processes with a single parent,
+  - (X) There is a lopsided "tree" of processes with a single parent,
     several children, some of which have grandchildren, some of which
     have great grandchildren, etc.
   - ( ) There are several individual parents each of which has a single
@@ -54,7 +54,7 @@ QUIZ Output Observations
   What is true about the order in which the different processes complete
   and output their "FINISH" messages?
   - ( ) The order that the processes complete is always the same.
-  - ( ) The order that processes complete is unpredictable.
+  - (X) The order that processes complete is unpredictable.
 
 CODE Create Order Within 'fork_wait'
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

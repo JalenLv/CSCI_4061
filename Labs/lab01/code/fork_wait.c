@@ -7,7 +7,7 @@
 
 int main() {
     printf("START pid: %d parent_pid: %d\n", getpid(), getppid());
-    fflush(stdout);    // Prevents duplicate I/O after a fork
+    fflush(stdout); // Prevents duplicate I/O after a fork
 
     for (int i = 0; i < NUM_ITERS; i++) {
         pid_t pid = fork();
@@ -17,7 +17,7 @@ int main() {
             return 1;
         } else if (pid > 0) {
             // Parent process, pid identifies child process
-            // TODO wait for this child process to terminate
+            (void)wait(NULL);
         }
     }
     printf("FINISH pid: %d parent_pid: %d\n", getpid(), getppid());

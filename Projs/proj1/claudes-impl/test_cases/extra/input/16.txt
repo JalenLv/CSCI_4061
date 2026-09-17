@@ -1,0 +1,10 @@
+@> cd test_cases
+@> pwd
+@> cd resources
+@> pwd
+@> cat quote.txt
+@> cd ../..
+@> pwd
+@> cd /tmp
+@> pwd
+@> exit

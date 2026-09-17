@@ -1,0 +1,25 @@
+@> pwd
+@> cd test_cases/resources
+@> ls > ../../out.txt
+@> cd ../..
+@> cat out.txt
+@> ./slow_write 3 1 bg1.txt &
+@> jobs
+@> wc -l < out.txt
+@> cat
+^Z
+@> jobs
+@> echo appended >> out.txt
+@> cat out.txt
+@> wait-for 0
+@> jobs
+@> fg 0
+hello
+^D
+@> jobs
+@> cat bg1.txt
+@> ./slow_write 2 1 bg2.txt &
+@> wait-all
+@> jobs
+@> cat bg2.txt
+@> exit

@@ -1,0 +1,5 @@
+@> rm -f out2.txt
+@> echo created >> out2.txt
+@> cat out2.txt
+created
+@> exit

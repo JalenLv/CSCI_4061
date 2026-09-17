@@ -1,0 +1,12 @@
+@> ./slow_write 2 1 out.txt &
+@> cat
+^Z
+@> jobs
+@> wait-for 0
+@> jobs
+@> fg 0
+hello from cat
+^D
+@> jobs
+@> cat out.txt
+@> exit

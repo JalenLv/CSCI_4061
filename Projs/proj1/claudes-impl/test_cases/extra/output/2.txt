@@ -1,0 +1,8 @@
+@> echo one > out.txt
+@> echo two >> out.txt
+@> echo three >> out.txt
+@> cat out.txt
+one
+two
+three
+@> exit

@@ -1,0 +1,110 @@
+{
+    "name": "Swish Extra Tests",
+    "command": "./swish",
+    "prompt": "@> ",
+    "use_valgrind": "y",
+    "tests": [
+        {
+            "name": "cd With No Argument",
+            "description": "Uses 'cd' with no argument, which should change to the HOME directory.",
+            "input_file": "test_cases/extra/input/1.txt",
+            "output_file": "test_cases/extra/output/1.txt"
+        },
+        {
+            "name": "Append to Existing File",
+            "description": "Uses '>>' to append output to a file that already exists.",
+            "input_file": "test_cases/extra/input/2.txt",
+            "output_file": "test_cases/extra/output/2.txt"
+        },
+        {
+            "name": "Append Creates File",
+            "description": "Uses '>>' on a file that does not exist yet; it should be created.",
+            "input_file": "test_cases/extra/input/3.txt",
+            "output_file": "test_cases/extra/output/3.txt"
+        },
+        {
+            "name": "Append vs Truncate",
+            "description": "Verifies '>>' preserves existing content while '>' overwrites it.",
+            "input_file": "test_cases/extra/input/4.txt",
+            "output_file": "test_cases/extra/output/4.txt"
+        },
+        {
+            "name": "Mixed Redirected and Plain Commands",
+            "description": "Runs a sequence mixing redirected and non-redirected commands.",
+            "input_file": "test_cases/extra/input/5.txt",
+            "output_file": "test_cases/extra/output/5.txt"
+        },
+        {
+            "name": "Errors Do Not Kill the Shell",
+            "description": "Several failing commands in a row; the shell must keep prompting.",
+            "input_file": "test_cases/extra/input/6.txt",
+            "output_file": "test_cases/extra/output/6.txt"
+        },
+        {
+            "name": "Background Job with Output Redirection",
+            "description": "Runs a background job whose stdout is redirected to a file.",
+            "input_file": "test_cases/extra/input/7.txt",
+            "output_file": "test_cases/extra/output/7.txt"
+        },
+        {
+            "name": "Background Job with Input Redirection",
+            "description": "Runs a background job with both input and output redirected.",
+            "input_file": "test_cases/extra/input/8.txt",
+            "output_file": "test_cases/extra/output/8.txt"
+        },
+        {
+            "name": "fg on a Running Background Job",
+            "description": "Uses 'fg' to bring a background (not stopped) job into the foreground.",
+            "input_file": "test_cases/extra/input/9.txt",
+            "output_file": "test_cases/extra/output/9.txt"
+        },
+        {
+            "name": "Background Job Alongside Stopped Job",
+            "description": "Mixes a background job and a suspended foreground job.",
+            "input_file": "test_cases/extra/input/10.txt",
+            "output_file": "test_cases/extra/output/10.txt"
+        },
+        {
+            "name": "Suspend, bg, then wait-all",
+            "description": "Suspends a job, resumes it in the background, then waits for it.",
+            "input_file": "test_cases/extra/input/11.txt",
+            "output_file": "test_cases/extra/output/11.txt"
+        },
+        {
+            "name": "wait-all Skips Stopped Jobs",
+            "description": "'wait-all' must ignore stopped jobs and leave them in the list.",
+            "input_file": "test_cases/extra/input/12.txt",
+            "output_file": "test_cases/extra/output/12.txt"
+        },
+        {
+            "name": "Repeated Interrupt and Suspend",
+            "description": "Interrupts and suspends several programs in sequence.",
+            "input_file": "test_cases/extra/input/13.txt",
+            "output_file": "test_cases/extra/output/13.txt"
+        },
+        {
+            "name": "Malformed Job Command Arguments",
+            "description": "Job commands with missing or invalid index arguments.",
+            "input_file": "test_cases/extra/input/14.txt",
+            "output_file": "test_cases/extra/output/14.txt"
+        },
+        {
+            "name": "Multiple Background Jobs Waited Individually",
+            "description": "Two background jobs awaited one at a time with 'wait-for'.",
+            "input_file": "test_cases/extra/input/15.txt",
+            "output_file": "test_cases/extra/output/15.txt"
+        },
+        {
+            "name": "Directory Navigation Sequence",
+            "description": "Relative and absolute 'cd' calls interleaved with programs.",
+            "input_file": "test_cases/extra/input/16.txt",
+            "output_file": "test_cases/extra/output/16.txt"
+        },
+        {
+            "name": "Full Session Combining All Features",
+            "description": "One long session: cd, redirection of all three kinds, a background job, a suspended job, wait-for, fg, and wait-all.",
+            "input_file": "test_cases/extra/input/17.txt",
+            "output_file": "test_cases/extra/output/17.txt"
+        }
+    ]
+}

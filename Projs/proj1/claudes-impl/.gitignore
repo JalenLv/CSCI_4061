@@ -1,0 +1,13 @@
+*.o
+
+swish
+slow_write
+
+test_results/
+out.txt
+out2.txt
+test_cases/out.txt
+bg1.txt
+bg2.txt
+
+proj1-code.zip

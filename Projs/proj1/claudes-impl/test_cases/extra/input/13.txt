@@ -1,0 +1,14 @@
+@> cat
+^C
+@> echo after-interrupt
+@> cat
+^Z
+@> echo after-suspend
+@> cat
+^C
+@> jobs
+@> fg 0
+one
+^D
+@> jobs
+@> exit

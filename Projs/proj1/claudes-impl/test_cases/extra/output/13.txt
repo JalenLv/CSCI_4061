@@ -1,0 +1,14 @@
+@> cat
+@> echo after-interrupt
+after-interrupt
+@> cat
+@> echo after-suspend
+after-suspend
+@> cat
+@> jobs
+0: cat (stopped)
+@> fg 0
+one
+one
+@> jobs
+@> exit

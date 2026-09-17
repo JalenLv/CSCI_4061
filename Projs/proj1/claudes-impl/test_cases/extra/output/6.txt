@@ -1,0 +1,17 @@
+@> cd this_dir_does_not_exist
+chdir: No such file or directory
+@> echo alive1
+alive1
+@> ./this_program_does_not_exist
+exec: No such file or directory
+@> echo alive2
+alive2
+@> wc < this_file_does_not_exist
+Failed to open input file: No such file or directory
+@> echo alive3
+alive3
+@> cat missing_file > out.txt
+cat: missing_file: No such file or directory
+@> echo alive4
+alive4
+@> exit

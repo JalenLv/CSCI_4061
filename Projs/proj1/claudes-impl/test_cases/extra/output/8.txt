@@ -1,0 +1,7 @@
+@> echo hello > out.txt
+@> cat < out.txt > out2.txt &
+@> wait-all
+@> cat out2.txt
+hello
+@> jobs
+@> exit

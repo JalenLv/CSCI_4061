@@ -1,0 +1,8 @@
+@> fg
+@> bg
+@> wait-for
+@> fg -1
+@> wait-for 3
+@> wait-all
+@> echo alive
+@> exit

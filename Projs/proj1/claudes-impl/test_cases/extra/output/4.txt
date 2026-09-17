@@ -1,0 +1,9 @@
+@> echo aaa > out.txt
+@> echo bbb >> out.txt
+@> cat out.txt
+aaa
+bbb
+@> echo ccc > out.txt
+@> cat out.txt
+ccc
+@> exit

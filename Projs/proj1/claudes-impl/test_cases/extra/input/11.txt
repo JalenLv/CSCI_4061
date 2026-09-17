@@ -1,0 +1,9 @@
+@> ./slow_write 3 1 out.txt
+^Z
+@> jobs
+@> bg 0
+@> jobs
+@> wait-all
+@> jobs
+@> cat out.txt
+@> exit

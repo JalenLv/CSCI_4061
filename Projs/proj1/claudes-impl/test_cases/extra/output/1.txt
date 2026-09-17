@@ -1,0 +1,6 @@
+@> pwd
+{{pwd}}
+@> cd
+@> pwd
+{{echo $HOME}}
+@> exit

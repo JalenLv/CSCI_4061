@@ -1,0 +1,18 @@
+@> echo alpha
+alpha
+@> echo beta > out.txt
+@> cat out.txt
+beta
+@> echo gamma >> out.txt
+@> cat < out.txt
+beta
+gamma
+@> cat < out.txt > out2.txt
+@> cat out2.txt
+beta
+gamma
+@> echo delta
+delta
+@> pwd
+{{pwd}}
+@> exit

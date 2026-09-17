@@ -1,0 +1,16 @@
+@> cd test_cases
+@> pwd
+{{pwd}}/test_cases
+@> cd resources
+@> pwd
+{{pwd}}/test_cases/resources
+@> cat quote.txt
+Premature optimization is the root of all evil.
+    -- Donald Knuth
+@> cd ../..
+@> pwd
+{{pwd}}
+@> cd /tmp
+@> pwd
+/tmp
+@> exit

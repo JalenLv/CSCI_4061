@@ -1,0 +1,11 @@
+@> ./slow_write 2 1 out.txt &
+@> cat
+^Z
+@> jobs
+@> wait-all
+@> jobs
+@> fg 0
+survived
+^D
+@> jobs
+@> exit

@@ -1,0 +1,9 @@
+@> cd this_dir_does_not_exist
+@> echo alive1
+@> ./this_program_does_not_exist
+@> echo alive2
+@> wc < this_file_does_not_exist
+@> echo alive3
+@> cat missing_file > out.txt
+@> echo alive4
+@> exit

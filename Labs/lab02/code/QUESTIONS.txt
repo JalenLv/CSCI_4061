@@ -47,7 +47,7 @@ QUIZ Program Management in the Shell
   program?
   - ( ) Hit the 'Escape' key.
   - ( ) Hit the 'q' key.
-  - ( ) Type 'Ctrl-C'.
+  - (X) Type 'Ctrl-C'.
   - ( ) Wait patiently and hope for the best.
 
   Now, run 'print_nums' again, but this time type 'Ctrl-Z' after letting the
@@ -55,7 +55,7 @@ QUIZ Program Management in the Shell
   by the shell.  Finally, type the command "jobs" in to your shell. Which of
   the following best describes what this command does?
   - ( ) Shows a list of all programs run previously in this terminal session.
-  - ( ) Shows a list of programs that have been stopped previously or are
+  - (X) Shows a list of programs that have been stopped previously or are
         active in the background in this terminal session.
   - ( ) Shows a list of programs that were forcibly terminated in this terminal
         session.
@@ -65,7 +65,7 @@ QUIZ Program Management in the Shell
   Run the command 'fg %1'. What do you notice about the numbers being printed
   out by the program now?
   - ( ) They start over at 0 and increase as they did before.
-  - ( ) They resume increasing from where 'print_nums' previously left off.
+  - (X) They resume increasing from where 'print_nums' previously left off.
   - ( ) The numbers begin decreasing rather than increasing.
   - ( ) None of the above
 
@@ -75,7 +75,7 @@ QUIZ Program Management in the Shell
   screen.) Which of the following best describes what this command does?
   - ( ) Signals the program with the name "%1", causing it to terminate.
   - ( ) Signals the program with the PID 1, causing it to terminate.
-  - ( ) Signals the first job in our terminal session ('print_nums'), causing
+  - (X) Signals the first job in our terminal session ('print_nums'), causing
         it to terminate.
   - ( ) Signals all processes with a PID ending with a '1' digit.
 

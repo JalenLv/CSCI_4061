@@ -152,6 +152,25 @@ int run_command(strvec_t *tokens) {
     // Call getpid() to get its process ID then call setpgid() and use this
     // process ID as the value for the new process group ID
 
+    struct sigaction sac;
+    sac.sa_handler = SIG_DFL;
+    if (sigfillset(&sac.sa_mask) == -1) {
+        perror("sigfillset");
+        return -1;
+    }
+    sac.sa_flags = 0;
+    if (sigaction(SIGTTIN, &sac, NULL) == -1 ||
+        sigaction(SIGTTOU, &sac, NULL) == -1) {
+        perror("sigaction");
+        return -1;
+    }
+
+    pid_t pid = getpid();
+    if (setpgid(pid, pid) != 0) {
+        perror("setpgid");
+        return -1;
+    }
+
     execvp(argv[0], argv);
     perror("exec");
     return -1;

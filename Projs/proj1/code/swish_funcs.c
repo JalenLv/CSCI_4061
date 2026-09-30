@@ -117,7 +117,7 @@ int run_command(strvec_t *tokens) {
     // Hint: Build a string array from the 'tokens' vector and pass this into
     // execvp() Another Hint: You have a guarantee of the longest possible
     // needed array, so you won't have to use malloc.
-    char *argv[MAX_ARGS] = {0};
+    char *argv[MAX_ARGS + 1] = {0};
     for (int i = 0; (i < tokens->length) && !is_redir_op(tokens->data[i]); i++)
         argv[i] = tokens->data[i];
 

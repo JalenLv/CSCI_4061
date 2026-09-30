@@ -173,12 +173,15 @@ int main(int argc, char **argv) {
             }
 
             else {
-                // Task 4: run_command() puts the child in its own process
-                // group, but the parent races ahead to tcsetpgrp() below.
-                // Setting the group here too means it exists either way.
-                // EACCES means the child already exec'd (so it set its own
-                // group first), ESRCH that it has already terminated
-                if (setpgid(child_pid, child_pid) == -1 && errno != EACCES && errno != ESRCH) {
+                // Task 4: run_command() sets the child's group as well, but the
+                // child may not get there before the tcsetpgrp() below gives
+                // that group the terminal. Linux lets that through (POSIX says
+                // it should fail), but a Ctrl-C in the gap would reach no one,
+                // since the group has no members yet. Setting it from here too
+                // means it is in place before the handoff, and whichever call
+                // comes second changes nothing. EACCES means the child already
+                // exec'd, which it only does after setting its own group
+                if (setpgid(child_pid, child_pid) == -1 && errno != EACCES) {
                     perror("setpgid");
                 }
 

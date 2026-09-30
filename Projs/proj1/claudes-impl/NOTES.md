@@ -88,13 +88,18 @@ spurious errors. Each is small and independent — delete any of them and all 49
 tests still pass.
 
 1. **The parent also calls `setpgid(child_pid, child_pid)`** (`swish.c`). The
-   assignment puts `setpgid()` only in the child, but the parent then races
-   ahead to `tcsetpgrp(STDIN_FILENO, child_pid)`. If the parent wins that race,
-   the process group doesn't exist yet and `tcsetpgrp()` fails with `ESRCH`.
-   Calling `setpgid()` from both sides is what real shells do; whichever runs
-   first wins and the second call is a harmless no-op. `EACCES` (child already
-   `exec`'d) and `ESRCH` (child already exited) are tolerated rather than
-   reported, since both mean the group is already sorted out.
+   assignment puts `setpgid()` only in the child, but after `fork()` nothing
+   guarantees the child gets there before the parent's
+   `tcsetpgrp(STDIN_FILENO, child_pid)`. On Linux that order still works:
+   `tcsetpgrp()` accepts the child's pid before any process is in that group,
+   and only fails (with `ESRCH`) for a pid that doesn't exist. POSIX says it
+   should fail with `EPERM`, so stricter systems can reject it. Even on Linux
+   there is a brief gap where the terminal's foreground group has no members,
+   and a Ctrl-C landing in it would reach no one. Calling `setpgid()` from both
+   sides, as real shells do, puts the group in place before the handoff;
+   whichever call runs second changes nothing. `EACCES` means the child already
+   `exec`'d, which it only does after setting its own group, so that error is
+   tolerated rather than reported.
 
 2. **`tcsetpgrp()` is guarded by `isatty(STDIN_FILENO)`** (`swish.c` and
    `resume_job()`). With a pty this changes nothing, so every test behaves

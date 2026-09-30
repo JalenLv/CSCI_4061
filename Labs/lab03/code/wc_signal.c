@@ -4,26 +4,35 @@
 
 #define _GNU_SOURCE
 
-#include <ctype.h>    // provides isspace() and other char type funcs
+#include <ctype.h> // provides isspace() and other char type funcs
 #include <signal.h>
 #include <stdio.h>
 #include <unistd.h>
 
-int keep_going = 1;    // control variable to continue loop
+int keep_going = 1; // control variable to continue loop
 
 // TODO: Add a signal handling function which will cause main loop to end
+void sigint_handler(int signum) { keep_going = 0; }
 
 int main(int argc, char *argv[]) {
     // TODO: add struct/calls to sigaction() to handle SIGINT and shut
     // down "gracefully". Use sigaction() and associated structs. Ensure
     // that the flag SA_RESTART is set as well to ensure system calls
     // are automatically restarted.
+    struct sigaction sa = {0};
+    sa.sa_handler = sigint_handler;
+    sigfillset(&sa.sa_mask);
+    sa.sa_flags = SA_RESTART;
+    if (sigaction(SIGINT, &sa, NULL) != 0) {
+        perror("sigaction");
+        return 1;
+    }
 
     int num_words = 0;
     int num_lines = 0;
     int num_chars = 0;
 
-    char last = ' ';    // Pretend last character is a space to start
+    char last = ' '; // Pretend last character is a space to start
     while (keep_going) {
         int cur_char = fgetc(stdin);
 
@@ -47,7 +56,7 @@ int main(int argc, char *argv[]) {
         last = cur_char;
     }
 
-    printf("\n");    // Extra newline in case of keyboard signal
+    printf("\n"); // Extra newline in case of keyboard signal
     printf("%d lines, %d words, %d chars\n", num_lines, num_words, num_chars);
     return 0;
 }

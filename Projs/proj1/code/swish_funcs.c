@@ -191,17 +191,63 @@ int resume_job(strvec_t *tokens, job_list_t *jobs, int is_foreground) {
     // 6. Call tcsetpgrp(STDIN_FILENO, <shell_pid>). shell_pid is the *current*
     //    process's pid, since we call this function from the main shell process
 
+    char *str_job_index = strvec_get(tokens, 1);
+    if (str_job_index == NULL) {
+        fprintf(stderr, "Missing job index\n");
+        return -1;
+    }
+    int job_index = atoi(str_job_index);
+    job_t *job = job_list_get(jobs, job_index);
+    if (job == NULL) {
+        fprintf(stderr, "Job index out of bounds\n");
+        return -1;
+    }
+
+    // A job continued first would still be in the background.
+    // If it read the terminal, it would get SIGTTIN and stop again.
+    if (tcsetpgrp(STDIN_FILENO, job->pid) == -1) {
+        perror("tcsetpgrp");
+        return -1;
+    }
+
+    if (kill(job->pid, SIGCONT) == -1) {
+        perror("kill");
+        goto RESUME_JOB_CLEANUP;
+    }
+
+    int wstatus;
+    if (waitpid(job->pid, &wstatus, WUNTRACED) == -1) {
+        perror("waitpid");
+        goto RESUME_JOB_CLEANUP;
+    }
+
+    if ((WIFEXITED(wstatus) || !WIFSTOPPED(wstatus)) &&
+        job_list_remove(jobs, job_index) == -1) {
+        fprintf(stderr, "Failed to remove job from list\n");
+        goto RESUME_JOB_CLEANUP;
+    }
+
+    if (tcsetpgrp(STDIN_FILENO, getpid()) == -1) {
+        perror("tcsetpgrp");
+        return -1;
+    }
+
     // TODO Task 6: Implement the ability to resume stopped jobs in the
     // background. This really just means omitting some of the steps used to
     // resume a job in the foreground:
-    // 1. DO NOT call tcsetpgrp() to manipulate foreground/background terminal
-    // process group
+    // 1. DO NOT call tcsetpgrp() to manipulate foreground/background
+    // terminal process group
     // 2. DO NOT call waitpid() to wait on the job
-    // 3. Make sure to modify the 'status' field of the relevant job list entry
-    // to BACKGROUND
+    // 3. Make sure to modify the 'status' field of the relevant job list
+    // entry to BACKGROUND
     //    (as it was STOPPED before this)
 
     return 0;
+
+RESUME_JOB_CLEANUP:
+    if (tcsetpgrp(STDIN_FILENO, getpid()) == -1)
+        perror("tcsetpgrp");
+    return -1;
 }
 
 int await_background_job(strvec_t *tokens, job_list_t *jobs) {

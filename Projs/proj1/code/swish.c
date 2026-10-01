@@ -154,22 +154,27 @@ int main(int argc, char **argv) {
                 strvec_clear(&tokens);
                 job_list_free(&jobs);
                 return 1;
-            } else {
-                // TODO Task 4: Set the child process as the target of signals
-                // sent to the terminal via the keyboard. To do this, call
-                // 'tcsetpgrp(STDIN_FILENO, <child_pid>)', where child_pid is
-                // the child's process ID just returned by fork(). Do this in
-                // the parent process.
+            }
 
-                if (tcsetpgrp(STDIN_FILENO, pid) == -1)
-                    perror("tcsetpgrp");
+            // TODO Task 4: Set the child process as the target of signals
+            // sent to the terminal via the keyboard. To do this, call
+            // 'tcsetpgrp(STDIN_FILENO, <child_pid>)', where child_pid is
+            // the child's process ID just returned by fork(). Do this in
+            // the parent process.
 
-                if (waitpid(pid, NULL, 0) == -1)
-                    perror("waitpid");
+            if (tcsetpgrp(STDIN_FILENO, pid) == -1)
+                perror("tcsetpgrp");
 
+            int wstatus;
+            if (waitpid(pid, &wstatus, WUNTRACED) == -1) {
+                perror("waitpid");
                 if (tcsetpgrp(STDIN_FILENO, getpid()) == -1)
                     perror("tcsetpgrp");
+                goto LOOP_CLEANUP;
             }
+
+            if (tcsetpgrp(STDIN_FILENO, getpid()) == -1)
+                perror("tcsetpgrp");
 
             // TODO Task 5: Handle the issue of foreground/background terminal
             // process groups. Do this by taking the following steps in the
@@ -187,6 +192,10 @@ int main(int argc, char **argv) {
             //    the terminal's jobs list.
             // You can detect if this has occurred using WIFSTOPPED on the
             // status variable set by waitpid()
+
+            if (WIFSTOPPED(wstatus) &&
+                job_list_add(&jobs, pid, tokens.data[0], STOPPED) != 0)
+                fprintf(stderr, "Failed to add to job list\n");
 
             // TODO Task 6: If the last token input by the user is "&", start
             // the current command in the background.

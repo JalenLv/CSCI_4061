@@ -45,7 +45,13 @@ docker run --rm -i --ulimit nofile=1024:1024 --cap-add SYS_PTRACE \
 ```
 
 - Use `-it` instead of `-i` to drive a program interactively.
-- `--user` keeps build output owned by the host user.
+- `--user` keeps build output owned by the host user. Keep it, and don't switch
+  to `--user root` on the real mount: that is how root-owned files end up in
+  `code/` (see Pitfalls). If `code/` already holds root-owned output from a
+  devcontainer run, a `--user` run there fails, because testius can't empty the
+  root-owned `test_results/`. Copy the sources, `Makefile` and `test_cases/`
+  into a scratch directory and test there instead. `--user root` is harmless
+  against a scratch copy.
 - `HOME=/tmp` gives that uid a usable home directory, since the image's
   passwd file doesn't list it. Some tests `cd` to `$HOME`.
 - POSIX man pages are installed in the image: `man 2 fork`, `man 7 signal`.
@@ -62,6 +68,17 @@ under `test_cases/`.
 - Results go in `test_results/`. `*-results.tmp` has a side-by-side diff, and
   when the manifest sets `use_valgrind`, `*-valgrd.tmp` has the valgrind log.
 - testius **empties `test_results/`** at the start of each run.
+
+**Extra tests from a reference implementation.** An agent-owned reference
+implementation (see Ground rules) may come with its own extra tests, for example
+`Projs/proj1/claudes-impl/test_cases/extra/`. They're written to the spec, so
+they also stand in for hidden tests against the owner's code. The owner's
+`code/` has no target for them, and agents don't add files there. Instead, make
+a fresh scratch copy of it (see the `--user` note above), copy the reference's
+`test_cases/extra/` into the copy's `test_cases/`, and run testius on that
+manifest in the copy. These tests can check strings the spec never defines, or
+features the owner hasn't written yet. Check Pitfalls for known cases before
+reporting a failure as a bug.
 
 Build flags are always `-Wall -Werror -g`, so any warning fails the build.
 
@@ -110,7 +127,7 @@ the zip is uploaded to Gradescope.
 
 | Project | What | Due | Notes |
 |---|---|---|---|
-| proj1 | `swish`, a small job-control shell: tokenizing, `cd`/`pwd`, `fork`/`exec`, `<` `>` `>>`, process groups and `tcsetpgrp`, `fg`/`bg`/`wait-for`/`wait-all` | Fri 10/02 11:59pm (Gradescope) | Reference implementation in `Projs/proj1/claudes-impl/`: its `NOTES.md` covers design choices and oral-exam Q&A, and `make test-extra` runs 17 additional tests |
+| proj1 | `swish`, a small job-control shell: tokenizing, `cd`/`pwd`, `fork`/`exec`, `<` `>` `>>`, process groups and `tcsetpgrp`, `fg`/`bg`/`wait-for`/`wait-all` | Fri 10/02 11:59pm (Gradescope) | Reference implementation in `Projs/proj1/claudes-impl/`: its `NOTES.md` covers design choices and oral-exam Q&A, and `make test-extra` runs 29 additional tests |
 
 ## Pitfalls
 
@@ -122,3 +139,12 @@ the zip is uploaded to Gradescope.
 - **Build output.** Lab03 and the project `code/` dirs have a `.gitignore` for
   binaries, `*.o`, `test_results/`, the submission zip and test scratch files.
   Lab01 and lab02 don't have one, and their submission zips are tracked.
+- **proj1 extra tests on the owner's code.** Some results look like bugs but
+  may not be:
+  - Extra test 14 expects the reference's own `Missing job index argument`
+    message. The spec doesn't define that string, so different wording is fine.
+    A crash is a real bug.
+  - Tests that use `&`, `bg`, `wait-for` or `wait-all` fail until Task 6 is
+    written. Tests 18–20 time out instead of failing. A timeout also happens
+    when `resume_job()` doesn't mark a re-stopped job `STOPPED`, so check which
+    cause it is before reporting it.

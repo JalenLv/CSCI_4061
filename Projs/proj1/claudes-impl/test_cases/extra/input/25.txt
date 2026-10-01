@@ -1,0 +1,7 @@
+@> grep foo
+^Z
+@> fg 0
+bar
+^D
+@> jobs
+@> exit

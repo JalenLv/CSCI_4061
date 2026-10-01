@@ -1,0 +1,8 @@
+@> ./slow_write 10 1 bg1.txt &
+@> fg 0
+@> wait-for 0
+Job index is for stopped process not background process
+Failed to wait for background job
+@> jobs
+0: ./slow_write (stopped)
+@> exit

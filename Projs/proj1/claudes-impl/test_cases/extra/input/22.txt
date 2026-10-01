@@ -1,0 +1,10 @@
+@> wc
+^Z
+@> fg 0
+hello
+^Z
+@> jobs
+@> fg 0
+^D
+@> jobs
+@> exit

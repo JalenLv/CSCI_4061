@@ -10,8 +10,8 @@ unmodified starter code.
 | Suite | Result |
 | --- | --- |
 | Provided tests (`make test`) | 32/32 pass |
-| Extra tests I wrote (`test_cases/extra/`) | 17/17 pass |
-| Valgrind (all 49 runs, incl. forked children) | 0 errors, 0 bytes in use at exit |
+| Extra tests I wrote (`test_cases/extra/`) | 29/29 pass |
+| Valgrind (all 61 runs, incl. forked children) | 0 errors, 0 bytes in use at exit |
 | `clang-format` | Matches the starter files' style byte-for-byte |
 
 ## Running it
@@ -33,7 +33,7 @@ make test           # run the 32 provided tests
 make test testnum=5 # run just one
 ./swish             # drive it by hand
 
-testius test_cases/extra/test_extra.json          # my 17 extra tests
+testius test_cases/extra/test_extra.json          # my 29 extra tests
 testius test_cases/extra/test_extra.json -v -n 17 # verbose, single test
 ```
 
@@ -70,7 +70,10 @@ and calls `setpgid(pid, pid)` before touching anything else. The parent calls
 **Task 5 — stopped jobs**. `waitpid(child_pid, &status, WUNTRACED)`; on
 `WIFSTOPPED(status)` the child goes into the job list as `STOPPED`.
 `resume_job()` looks the job up, hands it the terminal, `kill(pid, SIGCONT)`,
-waits the same way, and removes the job if it did not stop again.
+waits the same way, and removes the job if it did not stop again. If it did
+stop again, it sets the entry to `STOPPED`: `fg` also works on a job that is
+running in the background, and that entry would otherwise still say
+`BACKGROUND`.
 
 **Task 6 — background jobs**. A trailing `&` is detected with `strcmp` on the
 last token and removed with `strvec_take()`. The background path skips both
@@ -84,7 +87,7 @@ walk because removing nodes mid-iteration would invalidate the cursor.
 ## Three things I did that the assignment doesn't ask for
 
 These are all in service of the "Error Checking" rubric or of not printing
-spurious errors. Each is small and independent — delete any of them and all 49
+spurious errors. Each is small and independent — delete any of them and all 61
 tests still pass.
 
 1. **The parent also calls `setpgid(child_pid, child_pid)`** (`swish.c`). The
@@ -132,6 +135,12 @@ tests still pass.
   dead child's group stays foreground, and the shell — now a background process
   reading from the terminal — would get `SIGTTIN`. That's exactly the signal it
   ignores, so instead of stopping, its `read()` would fail with `EIO`.
+- **Why does `resume_job()` set `STOPPED` when the job stops again?**
+  `waitpid()` reports each stop only once. If `fg` brought the job forward from
+  the background and the shell doesn't record the stop, the entry still says
+  `BACKGROUND`. `wait-for` and `wait-all` then call `waitpid()` on it and block
+  forever, since that stop has already been reported. Extra tests 18–20 hang
+  without this line.
 - **Why can't `run_command()` return on success?** It ends in `execvp()`, which
   replaces the process image. Anything after it only runs if `exec` failed.
 - **Why does the failing child `return 1` instead of continuing the loop?** It
@@ -164,6 +173,17 @@ few others:
 | 15 | Two background jobs awaited individually, out of order |
 | 16 | Relative and absolute `cd` interleaved with programs |
 | 17 | One long session using every feature together |
+| 18–19 | `fg` on a background job, then Ctrl-Z: it shows as stopped, and `wait-all` / `wait-for` don't block on it |
+| 20 | Ctrl-Z → `bg` → `fg` → Ctrl-Z ends with the job marked stopped |
+| 21 | Control for 18–20: Ctrl-Z → `fg` → Ctrl-Z on a job that was never in the background |
+| 22 | A job resumed with `fg` can be suspended again |
+| 23 | A stopped job killed by another command is reaped by `fg` and removed |
+| 24 | A stopped `cat > out.txt`, resumed, still writes to the file |
+| 25 | A resumed job that exits non-zero is still removed |
+| 26 | Interrupting the middle of three stopped jobs shifts the later indices down |
+| 27 | Built-ins and programs run while a job is stopped, then `fg` still works |
+| 28 | One job suspended and resumed four times |
+| 29 | `fg` on an index whose job just finished is out of bounds |
 
 ## Known simplifications (all permitted by the spec)
 

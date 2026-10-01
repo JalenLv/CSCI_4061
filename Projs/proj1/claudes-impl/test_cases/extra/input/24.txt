@@ -1,0 +1,8 @@
+@> cat > out.txt
+^Z
+@> jobs
+@> fg 0
+hello
+^D
+@> cat out.txt
+@> exit

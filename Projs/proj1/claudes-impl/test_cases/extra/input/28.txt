@@ -1,0 +1,17 @@
+@> cat
+^Z
+@> fg 0
+a
+^Z
+@> fg 0
+b
+^Z
+@> fg 0
+c
+^Z
+@> jobs
+@> fg 0
+d
+^D
+@> jobs
+@> exit

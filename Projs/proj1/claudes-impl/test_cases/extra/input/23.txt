@@ -1,0 +1,7 @@
+@> sleep 4061
+^Z
+@> pkill -9 -f ^sleep.4061$
+@> jobs
+@> fg 0
+@> jobs
+@> exit

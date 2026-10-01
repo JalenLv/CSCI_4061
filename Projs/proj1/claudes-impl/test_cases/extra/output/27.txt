@@ -1,0 +1,12 @@
+@> cat
+@> echo hi
+hi
+@> pwd
+{{pwd}}
+@> ls > out.txt
+@> fg 0
+x
+x
+@> echo done
+done
+@> exit

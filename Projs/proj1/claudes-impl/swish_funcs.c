@@ -256,6 +256,11 @@ int resume_job(strvec_t *tokens, job_list_t *jobs, int is_foreground) {
             fprintf(stderr, "Failed to remove job from job list\n");
             retval = -1;
         }
+    } else {
+        // Stopped again. The entry may still say BACKGROUND if 'fg' brought the
+        // job forward from the background, and waitpid() reports a stop only
+        // once, so a later wait-for or wait-all would block on it forever
+        job->status = STOPPED;
     }
 
     // Task 5: Put the shell back in the foreground of the terminal

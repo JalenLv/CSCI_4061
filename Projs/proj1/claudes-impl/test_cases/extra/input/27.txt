@@ -1,0 +1,10 @@
+@> cat
+^Z
+@> echo hi
+@> pwd
+@> ls > out.txt
+@> fg 0
+x
+^D
+@> echo done
+@> exit

@@ -105,6 +105,78 @@
             "description": "One long session: cd, redirection of all three kinds, a background job, a suspended job, wait-for, fg, and wait-all.",
             "input_file": "test_cases/extra/input/17.txt",
             "output_file": "test_cases/extra/output/17.txt"
+        },
+        {
+            "name": "fg a Background Job, Then Suspend It",
+            "description": "Runs a job with '&', brings it forward with 'fg', and suspends it. 'jobs' must show it as stopped, and 'wait-all' must skip it rather than block.",
+            "input_file": "test_cases/extra/input/18.txt",
+            "output_file": "test_cases/extra/output/18.txt"
+        },
+        {
+            "name": "fg a Background Job, Suspend, Then wait-for",
+            "description": "Same as the previous test, but 'wait-for' must refuse the now-stopped job instead of blocking on it.",
+            "input_file": "test_cases/extra/input/19.txt",
+            "output_file": "test_cases/extra/output/19.txt"
+        },
+        {
+            "name": "Suspend, bg, fg, Suspend Again",
+            "description": "Suspends a job, resumes it with 'bg', brings it forward with 'fg', and suspends it again. It must end up marked as stopped.",
+            "input_file": "test_cases/extra/input/20.txt",
+            "output_file": "test_cases/extra/output/20.txt"
+        },
+        {
+            "name": "Suspend, fg, Suspend Again, wait-all",
+            "description": "Control for the previous three tests: a job that was never in the background is suspended twice. 'wait-all' must skip it.",
+            "input_file": "test_cases/extra/input/21.txt",
+            "output_file": "test_cases/extra/output/21.txt"
+        },
+        {
+            "name": "Suspend Again After fg",
+            "description": "Resumes a stopped job with 'fg', suspends it again, then finishes it with a second 'fg'.",
+            "input_file": "test_cases/extra/input/22.txt",
+            "output_file": "test_cases/extra/output/22.txt"
+        },
+        {
+            "name": "Stopped Job Killed From Outside",
+            "description": "A stopped job is killed with SIGKILL by another command. 'fg' must reap it and remove it from the jobs list.",
+            "input_file": "test_cases/extra/input/23.txt",
+            "output_file": "test_cases/extra/output/23.txt"
+        },
+        {
+            "name": "Stopped Job with Output Redirection",
+            "description": "Suspends 'cat > out.txt', resumes it, and checks that the input reached the file.",
+            "input_file": "test_cases/extra/input/24.txt",
+            "output_file": "test_cases/extra/output/24.txt"
+        },
+        {
+            "name": "Job Exits Non-Zero After fg",
+            "description": "A resumed job that exits with a non-zero status is still removed from the jobs list.",
+            "input_file": "test_cases/extra/input/25.txt",
+            "output_file": "test_cases/extra/output/25.txt"
+        },
+        {
+            "name": "fg the Middle Job, Then Interrupt",
+            "description": "Three stopped jobs; the middle one is resumed and interrupted, and the indices of the rest shift down.",
+            "input_file": "test_cases/extra/input/26.txt",
+            "output_file": "test_cases/extra/output/26.txt"
+        },
+        {
+            "name": "Other Commands While a Job Is Stopped",
+            "description": "Runs built-ins, a program, and a redirected program while a job is stopped, then resumes the job.",
+            "input_file": "test_cases/extra/input/27.txt",
+            "output_file": "test_cases/extra/output/27.txt"
+        },
+        {
+            "name": "Suspend and Resume Repeatedly",
+            "description": "One job is suspended and resumed with 'fg' four times before it finishes.",
+            "input_file": "test_cases/extra/input/28.txt",
+            "output_file": "test_cases/extra/output/28.txt"
+        },
+        {
+            "name": "fg an Index That Just Finished",
+            "description": "After a resumed job completes, 'fg' on the same index is out of bounds.",
+            "input_file": "test_cases/extra/input/29.txt",
+            "output_file": "test_cases/extra/output/29.txt"
         }
     ]
 }

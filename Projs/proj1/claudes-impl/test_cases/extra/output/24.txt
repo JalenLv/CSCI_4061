@@ -1,0 +1,8 @@
+@> cat > out.txt
+@> jobs
+0: cat (stopped)
+@> fg 0
+hello
+@> cat out.txt
+hello
+@> exit

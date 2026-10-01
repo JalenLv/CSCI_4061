@@ -1,0 +1,19 @@
+@> cat
+@> wc
+@> sleep 50
+@> jobs
+0: cat (stopped)
+1: wc (stopped)
+2: sleep (stopped)
+@> fg 1
+@> jobs
+0: cat (stopped)
+1: sleep (stopped)
+@> fg 1
+@> jobs
+0: cat (stopped)
+@> fg 0
+x
+x
+@> jobs
+@> exit

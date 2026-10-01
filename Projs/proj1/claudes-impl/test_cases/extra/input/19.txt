@@ -1,0 +1,6 @@
+@> ./slow_write 10 1 bg1.txt &
+@> fg 0
+^Z
+@> wait-for 0
+@> jobs
+@> exit

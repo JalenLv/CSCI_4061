@@ -202,6 +202,11 @@ int resume_job(strvec_t *tokens, job_list_t *jobs, int is_foreground) {
         fprintf(stderr, "Job index out of bounds\n");
         return -1;
     }
+    if (job->status != STOPPED) {
+        fprintf(stderr,
+                "Job index is for background process not stopped process\n");
+        return -1;
+    }
 
     if (is_foreground) {
         // A job continued first would still be in the background.

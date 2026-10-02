@@ -135,6 +135,15 @@ int main(int argc, char **argv) {
         }
 
         else {
+            const char *last_token = tokens.data[tokens.length - 1];
+            int is_background = !strcmp(last_token, "&");
+            if (is_background) {
+                if (tokens.length > 1)
+                    strvec_take(&tokens, tokens.length - 1);
+                else
+                    goto LOOP_CLEANUP;
+            }
+
             // TODO Task 2: If the user input does not match any built-in shell
             // command, treat the input as a program name and command-line
             // arguments USE THE run_command() FUNCTION DEFINED IN swish_funcs.c
@@ -154,6 +163,25 @@ int main(int argc, char **argv) {
                 strvec_clear(&tokens);
                 job_list_free(&jobs);
                 return 1;
+            }
+
+            // TODO Task 6: If the last token input by the user is "&", start
+            // the current command in the background.
+            // 1. Determine if the last token is "&". If present, use
+            // strvec_take() to remove
+            //    the "&" from the token list.
+            // 2. Modify the code for the parent (shell) process: Don't use
+            // tcsetpgrp() or
+            //    use waitpid() to interact with the newly spawned child
+            //    process.
+            // 3. Add a new entry to the jobs list with the child's pid, program
+            // name,
+            //    and status BACKGROUND.
+
+            if (is_background) {
+                if (job_list_add(&jobs, pid, first_token, BACKGROUND) != 0)
+                    fprintf(stderr, "Failed to add to job list\n");
+                goto LOOP_CLEANUP;
             }
 
             // TODO Task 4: Set the child process as the target of signals
@@ -194,21 +222,8 @@ int main(int argc, char **argv) {
             // status variable set by waitpid()
 
             if (WIFSTOPPED(wstatus) &&
-                job_list_add(&jobs, pid, tokens.data[0], STOPPED) != 0)
+                job_list_add(&jobs, pid, first_token, STOPPED) != 0)
                 fprintf(stderr, "Failed to add to job list\n");
-
-            // TODO Task 6: If the last token input by the user is "&", start
-            // the current command in the background.
-            // 1. Determine if the last token is "&". If present, use
-            // strvec_take() to remove
-            //    the "&" from the token list.
-            // 2. Modify the code for the parent (shell) process: Don't use
-            // tcsetpgrp() or
-            //    use waitpid() to interact with the newly spawned child
-            //    process.
-            // 3. Add a new entry to the jobs list with the child's pid, program
-            // name,
-            //    and status BACKGROUND.
         }
 
     LOOP_CLEANUP:

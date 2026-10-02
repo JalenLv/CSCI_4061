@@ -203,33 +203,35 @@ int resume_job(strvec_t *tokens, job_list_t *jobs, int is_foreground) {
         return -1;
     }
 
-    // A job continued first would still be in the background.
-    // If it read the terminal, it would get SIGTTIN and stop again.
-    if (tcsetpgrp(STDIN_FILENO, job->pid) == -1) {
-        perror("tcsetpgrp");
-        return -1;
-    }
+    if (is_foreground) {
+        // A job continued first would still be in the background.
+        // If it read the terminal, it would get SIGTTIN and stop again.
+        if (tcsetpgrp(STDIN_FILENO, job->pid) == -1) {
+            perror("tcsetpgrp");
+            return -1;
+        }
 
-    if (kill(job->pid, SIGCONT) == -1) {
-        perror("kill");
-        goto RESUME_JOB_CLEANUP;
-    }
+        if (kill(job->pid, SIGCONT) == -1) {
+            perror("kill");
+            goto RESUME_JOB_CLEANUP;
+        }
 
-    int wstatus;
-    if (waitpid(job->pid, &wstatus, WUNTRACED) == -1) {
-        perror("waitpid");
-        goto RESUME_JOB_CLEANUP;
-    }
+        int wstatus;
+        if (waitpid(job->pid, &wstatus, WUNTRACED) == -1) {
+            perror("waitpid");
+            goto RESUME_JOB_CLEANUP;
+        }
 
-    if ((WIFEXITED(wstatus) || !WIFSTOPPED(wstatus)) &&
-        job_list_remove(jobs, job_index) == -1) {
-        fprintf(stderr, "Failed to remove job from list\n");
-        goto RESUME_JOB_CLEANUP;
-    }
+        if ((WIFEXITED(wstatus) || !WIFSTOPPED(wstatus)) &&
+            job_list_remove(jobs, job_index) == -1) {
+            fprintf(stderr, "Failed to remove job from list\n");
+            goto RESUME_JOB_CLEANUP;
+        }
 
-    if (tcsetpgrp(STDIN_FILENO, getpid()) == -1) {
-        perror("tcsetpgrp");
-        return -1;
+        if (tcsetpgrp(STDIN_FILENO, getpid()) == -1) {
+            perror("tcsetpgrp");
+            return -1;
+        }
     }
 
     // TODO Task 6: Implement the ability to resume stopped jobs in the
@@ -241,6 +243,14 @@ int resume_job(strvec_t *tokens, job_list_t *jobs, int is_foreground) {
     // 3. Make sure to modify the 'status' field of the relevant job list
     // entry to BACKGROUND
     //    (as it was STOPPED before this)
+
+    else {
+        if (kill(job->pid, SIGCONT) == -1) {
+            perror("kill");
+            return -1;
+        }
+        job->status = BACKGROUND;
+    }
 
     return 0;
 
@@ -261,6 +271,34 @@ int await_background_job(strvec_t *tokens, job_list_t *jobs) {
     // 4. If the process terminates (is not stopped by a signal) remove it from
     // the jobs list
 
+    char *str_job_index = strvec_get(tokens, 1);
+    if (str_job_index == NULL) {
+        fprintf(stderr, "Missing job index\n");
+        return -1;
+    }
+    int job_index = atoi(str_job_index);
+    job_t *job = job_list_get(jobs, job_index);
+    if (job == NULL) {
+        fprintf(stderr, "Job index out of bounds\n");
+        return -1;
+    }
+    if (job->status != BACKGROUND) {
+        fprintf(stderr,
+                "Job index is for stopped process not background process\n");
+        return -1;
+    }
+
+    int wstatus;
+    if (waitpid(job->pid, &wstatus, 0) == -1) {
+        perror("waitpid");
+        return -1;
+    }
+
+    if (WIFEXITED(wstatus) && job_list_remove(jobs, job_index) != 0) {
+        fprintf(stderr, "Failed to remove job from job list\n");
+        return -1;
+    }
+
     return 0;
 }
 
@@ -275,6 +313,23 @@ int await_all_background_jobs(job_list_t *jobs) {
     // 4. Remove all background jobs (which have all just terminated) from jobs
     // list.
     //    Use the job_list_remove_by_status() function.
+
+    for (int i = 0; i < jobs->length; i++) {
+        job_t *job = job_list_get(jobs, i);
+        if (job->status != BACKGROUND)
+            continue;
+
+        int wstatus;
+        if (waitpid(job->pid, &wstatus, WUNTRACED) == -1) {
+            perror("waitpid");
+            return -1;
+        }
+
+        if (WIFSTOPPED(wstatus))
+            job->status = STOPPED;
+    }
+
+    job_list_remove_by_status(jobs, BACKGROUND);
 
     return 0;
 }

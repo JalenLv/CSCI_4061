@@ -1,7 +1,10 @@
-@> sleep 4061
+@> cat
 ^Z
-@> pkill -9 -f ^sleep.4061$
-@> jobs
+@> echo hi
+@> pwd
+@> ls > out.txt
 @> fg 0
-@> jobs
+x
+^D
+@> echo done
 @> exit

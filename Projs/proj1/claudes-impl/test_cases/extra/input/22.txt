@@ -1,10 +1,18 @@
+@> cat
+^Z
 @> wc
 ^Z
-@> fg 0
-hello
+@> sleep 50
 ^Z
 @> jobs
+@> fg 1
+^C
+@> jobs
+@> fg 1
+^C
+@> jobs
 @> fg 0
+x
 ^D
 @> jobs
 @> exit

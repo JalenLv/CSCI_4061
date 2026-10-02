@@ -1,7 +1,6 @@
-@> grep foo
+@> wc
 ^Z
 @> fg 0
-bar
 ^D
-@> jobs
+@> fg 0
 @> exit

@@ -1,8 +1,17 @@
-@> cat > out.txt
+@> cat
+@> fg 0
+a
+a
+@> fg 0
+b
+b
+@> fg 0
+c
+c
 @> jobs
 0: cat (stopped)
 @> fg 0
-hello
-@> cat out.txt
-hello
+d
+d
+@> jobs
 @> exit

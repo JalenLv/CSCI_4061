@@ -10,8 +10,8 @@ unmodified starter code.
 | Suite | Result |
 | --- | --- |
 | Provided tests (`make test`) | 32/32 pass |
-| Extra tests I wrote (`test_cases/extra/`) | 29/29 pass |
-| Valgrind (all 61 runs, incl. forked children) | 0 errors, 0 bytes in use at exit |
+| Extra tests I wrote (`test_cases/extra/`) | 25/25 pass |
+| Valgrind (all 57 runs, incl. forked children) | 0 errors, 0 bytes in use at exit |
 | `clang-format` | Matches the starter files' style byte-for-byte |
 
 ## Running it
@@ -33,7 +33,7 @@ make test           # run the 32 provided tests
 make test testnum=5 # run just one
 ./swish             # drive it by hand
 
-testius test_cases/extra/test_extra.json          # my 29 extra tests
+testius test_cases/extra/test_extra.json          # my 25 extra tests
 testius test_cases/extra/test_extra.json -v -n 17 # verbose, single test
 ```
 
@@ -87,7 +87,7 @@ walk because removing nodes mid-iteration would invalidate the cursor.
 ## Three things I did that the assignment doesn't ask for
 
 These are all in service of the "Error Checking" rubric or of not printing
-spurious errors. Each is small and independent — delete any of them and all 61
+spurious errors. Each is small and independent — delete any of them and all 57
 tests still pass.
 
 1. **The parent also calls `setpgid(child_pid, child_pid)`** (`swish.c`). The
@@ -139,8 +139,8 @@ tests still pass.
   `waitpid()` reports each stop only once. If `fg` brought the job forward from
   the background and the shell doesn't record the stop, the entry still says
   `BACKGROUND`. `wait-for` and `wait-all` then call `waitpid()` on it and block
-  forever, since that stop has already been reported. Extra tests 18–20 hang
-  without this line.
+  forever, since that stop has already been reported. The spec only describes
+  `fg` on stopped jobs, so this case goes beyond it.
 - **Why can't `run_command()` return on success?** It ends in `execvp()`, which
   replaces the process image. Anything after it only runs if `exec` failed.
 - **Why does the failing child `return 1` instead of continuing the loop?** It
@@ -164,26 +164,26 @@ few others:
 | 5 | Redirected and plain commands interleaved |
 | 6 | Four different failures in a row; shell keeps prompting |
 | 7–8 | Background jobs with output and input redirection |
-| 9 | `fg` on a job that is *running* in the background, not stopped |
-| 10 | A background job and a suspended job alive at once |
-| 11 | Suspend → `bg` → `wait-all` |
-| 12 | `wait-all` skips stopped jobs and leaves them in the list |
-| 13 | Repeated Ctrl-C / Ctrl-Z across several programs |
-| 14 | `fg`/`bg`/`wait-for` with missing or negative indices |
-| 15 | Two background jobs awaited individually, out of order |
-| 16 | Relative and absolute `cd` interleaved with programs |
-| 17 | One long session using every feature together |
-| 18–19 | `fg` on a background job, then Ctrl-Z: it shows as stopped, and `wait-all` / `wait-for` don't block on it |
-| 20 | Ctrl-Z → `bg` → `fg` → Ctrl-Z ends with the job marked stopped |
-| 21 | Control for 18–20: Ctrl-Z → `fg` → Ctrl-Z on a job that was never in the background |
-| 22 | A job resumed with `fg` can be suspended again |
-| 23 | A stopped job killed by another command is reaped by `fg` and removed |
-| 24 | A stopped `cat > out.txt`, resumed, still writes to the file |
-| 25 | A resumed job that exits non-zero is still removed |
-| 26 | Interrupting the middle of three stopped jobs shifts the later indices down |
-| 27 | Built-ins and programs run while a job is stopped, then `fg` still works |
-| 28 | One job suspended and resumed four times |
-| 29 | `fg` on an index whose job just finished is out of bounds |
+| 9 | A background job and a suspended job alive at once |
+| 10 | Suspend → `bg` → `wait-all` |
+| 11 | `wait-all` skips stopped jobs and leaves them in the list |
+| 12 | Repeated Ctrl-C / Ctrl-Z across several programs |
+| 13 | `fg`/`bg`/`wait-for` with missing or negative indices |
+| 14 | Two background jobs awaited individually, out of order |
+| 15 | Relative and absolute `cd` interleaved with programs |
+| 16 | One long session using every feature together |
+| 17 | Ctrl-Z → `fg` → Ctrl-Z, then `wait-all` skips the re-stopped job |
+| 18 | A job resumed with `fg` can be suspended again |
+| 19 | A stopped job killed by another command is reaped by `fg` and removed |
+| 20 | A stopped `cat > out.txt`, resumed, still writes to the file |
+| 21 | A resumed job that exits non-zero is still removed |
+| 22 | Interrupting the middle of three stopped jobs shifts the later indices down |
+| 23 | Built-ins and programs run while a job is stopped, then `fg` still works |
+| 24 | One job suspended and resumed four times |
+| 25 | `fg` on an index whose job just finished is out of bounds |
+
+None of them runs `fg` or `bg` on a job that is running in the background. The
+spec only describes those commands on stopped jobs.
 
 ## Known simplifications (all permitted by the spec)
 

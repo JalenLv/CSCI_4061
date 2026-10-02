@@ -1,11 +1,14 @@
-@> ./slow_write 2 1 out.txt &
+@> cat
+^C
+@> echo after-interrupt
 @> cat
 ^Z
-@> jobs
-@> wait-all
+@> echo after-suspend
+@> cat
+^C
 @> jobs
 @> fg 0
-survived
+one
 ^D
 @> jobs
 @> exit

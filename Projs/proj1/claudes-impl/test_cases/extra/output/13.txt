@@ -1,14 +1,19 @@
-@> cat
-@> echo after-interrupt
-after-interrupt
-@> cat
-@> echo after-suspend
-after-suspend
-@> cat
-@> jobs
-0: cat (stopped)
-@> fg 0
-one
-one
-@> jobs
+@> fg
+Missing job index
+Failed to resume job in foreground
+@> bg
+Missing job index
+Failed to resume job in background
+@> wait-for
+Missing job index
+Failed to wait for background job
+@> fg -1
+Job index out of bounds
+Failed to resume job in foreground
+@> wait-for 3
+Job index out of bounds
+Failed to wait for background job
+@> wait-all
+@> echo alive
+alive
 @> exit

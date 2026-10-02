@@ -1,8 +1,7 @@
-@> ./slow_write 10 1 bg1.txt &
-@> fg 0
-@> wait-for 0
-Job index is for stopped process not background process
-Failed to wait for background job
+@> sleep 4061
+@> pkill -9 -f ^sleep.4061$
 @> jobs
-0: ./slow_write (stopped)
+0: sleep (stopped)
+@> fg 0
+@> jobs
 @> exit

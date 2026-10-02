@@ -1,7 +1,12 @@
-@> sleep 4061
-@> pkill -9 -f ^sleep.4061$
-@> jobs
-0: sleep (stopped)
+@> cat
+@> echo hi
+hi
+@> pwd
+{{pwd}}
+@> ls > out.txt
 @> fg 0
-@> jobs
+x
+x
+@> echo done
+done
 @> exit

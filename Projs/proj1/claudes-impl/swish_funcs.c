@@ -32,7 +32,7 @@
 static job_t *lookup_job_arg(strvec_t *tokens, job_list_t *jobs, int *idx_out) {
     const char *idx_str = strvec_get(tokens, 1);
     if (idx_str == NULL) {
-        fprintf(stderr, "Missing job index argument\n");
+        fprintf(stderr, "Missing job index\n");
         return NULL;
     }
 

@@ -1,8 +1,5 @@
-@> ./slow_write 10 1 bg1.txt
+@> grep foo
 @> fg 0
+bar
 @> jobs
-0: ./slow_write (stopped)
-@> wait-all
-@> jobs
-0: ./slow_write (stopped)
 @> exit

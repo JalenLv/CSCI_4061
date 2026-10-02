@@ -1,9 +1,8 @@
-@> ./slow_write 10 1 bg1.txt
+@> cat > out.txt
 ^Z
-@> bg 0
+@> jobs
 @> fg 0
-^Z
-@> jobs
-@> wait-all
-@> jobs
+hello
+^D
+@> cat out.txt
 @> exit

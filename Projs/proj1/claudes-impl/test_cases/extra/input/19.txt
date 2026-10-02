@@ -1,6 +1,7 @@
-@> ./slow_write 10 1 bg1.txt &
-@> fg 0
+@> sleep 4061
 ^Z
-@> wait-for 0
+@> pkill -9 -f ^sleep.4061$
+@> jobs
+@> fg 0
 @> jobs
 @> exit

@@ -127,7 +127,7 @@ the zip is uploaded to Gradescope.
 
 | Project | What | Due | Notes |
 |---|---|---|---|
-| proj1 | `swish`, a small job-control shell: tokenizing, `cd`/`pwd`, `fork`/`exec`, `<` `>` `>>`, process groups and `tcsetpgrp`, `fg`/`bg`/`wait-for`/`wait-all` | Fri 10/02 11:59pm (Gradescope) | Reference implementation in `Projs/proj1/claudes-impl/`: its `NOTES.md` covers design choices and oral-exam Q&A, and `make test-extra` runs 29 additional tests |
+| proj1 | `swish`, a small job-control shell: tokenizing, `cd`/`pwd`, `fork`/`exec`, `<` `>` `>>`, process groups and `tcsetpgrp`, `fg`/`bg`/`wait-for`/`wait-all` | Fri 10/02 11:59pm (Gradescope) | Reference implementation in `Projs/proj1/claudes-impl/`: its `NOTES.md` covers design choices and oral-exam Q&A, and `make test-extra` runs 25 additional tests |
 
 ## Pitfalls
 
@@ -139,12 +139,9 @@ the zip is uploaded to Gradescope.
 - **Build output.** Lab03 and the project `code/` dirs have a `.gitignore` for
   binaries, `*.o`, `test_results/`, the submission zip and test scratch files.
   Lab01 and lab02 don't have one, and their submission zips are tracked.
-- **proj1 extra tests on the owner's code.** Some results look like bugs but
-  may not be:
-  - Extra test 14 expects the reference's own `Missing job index argument`
-    message. The spec doesn't define that string, so different wording is fine.
-    A crash is a real bug.
-  - Tests that use `&`, `bg`, `wait-for` or `wait-all` fail until Task 6 is
-    written. Tests 18–20 time out instead of failing. A timeout also happens
-    when `resume_job()` doesn't mark a re-stopped job `STOPPED`, so check which
-    cause it is before reporting it.
+- **Messages the spec doesn't define.** A reference's extra tests expect the
+  reference's own wording wherever the spec leaves a message open, such as a
+  missing `fg` index. Different wording in the owner's code isn't a bug, so
+  report it as a wording difference. To align them, change the reference's
+  expected output and its message, not the owner's code. A crash is still a
+  real bug.

@@ -1,5 +1,7 @@
-@> grep foo
+@> wc
 @> fg 0
-bar
-@> jobs
+      0       0       0
+@> fg 0
+Job index out of bounds
+Failed to resume job in foreground
 @> exit

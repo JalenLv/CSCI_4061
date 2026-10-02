@@ -53,130 +53,106 @@
             "output_file": "test_cases/extra/output/8.txt"
         },
         {
-            "name": "fg on a Running Background Job",
-            "description": "Uses 'fg' to bring a background (not stopped) job into the foreground.",
+            "name": "Background Job Alongside Stopped Job",
+            "description": "Mixes a background job and a suspended foreground job.",
             "input_file": "test_cases/extra/input/9.txt",
             "output_file": "test_cases/extra/output/9.txt"
         },
         {
-            "name": "Background Job Alongside Stopped Job",
-            "description": "Mixes a background job and a suspended foreground job.",
+            "name": "Suspend, bg, then wait-all",
+            "description": "Suspends a job, resumes it in the background, then waits for it.",
             "input_file": "test_cases/extra/input/10.txt",
             "output_file": "test_cases/extra/output/10.txt"
         },
         {
-            "name": "Suspend, bg, then wait-all",
-            "description": "Suspends a job, resumes it in the background, then waits for it.",
+            "name": "wait-all Skips Stopped Jobs",
+            "description": "'wait-all' must ignore stopped jobs and leave them in the list.",
             "input_file": "test_cases/extra/input/11.txt",
             "output_file": "test_cases/extra/output/11.txt"
         },
         {
-            "name": "wait-all Skips Stopped Jobs",
-            "description": "'wait-all' must ignore stopped jobs and leave them in the list.",
+            "name": "Repeated Interrupt and Suspend",
+            "description": "Interrupts and suspends several programs in sequence.",
             "input_file": "test_cases/extra/input/12.txt",
             "output_file": "test_cases/extra/output/12.txt"
         },
         {
-            "name": "Repeated Interrupt and Suspend",
-            "description": "Interrupts and suspends several programs in sequence.",
+            "name": "Malformed Job Command Arguments",
+            "description": "Job commands with missing or invalid index arguments.",
             "input_file": "test_cases/extra/input/13.txt",
             "output_file": "test_cases/extra/output/13.txt"
         },
         {
-            "name": "Malformed Job Command Arguments",
-            "description": "Job commands with missing or invalid index arguments.",
+            "name": "Multiple Background Jobs Waited Individually",
+            "description": "Two background jobs awaited one at a time with 'wait-for'.",
             "input_file": "test_cases/extra/input/14.txt",
             "output_file": "test_cases/extra/output/14.txt"
         },
         {
-            "name": "Multiple Background Jobs Waited Individually",
-            "description": "Two background jobs awaited one at a time with 'wait-for'.",
+            "name": "Directory Navigation Sequence",
+            "description": "Relative and absolute 'cd' calls interleaved with programs.",
             "input_file": "test_cases/extra/input/15.txt",
             "output_file": "test_cases/extra/output/15.txt"
         },
         {
-            "name": "Directory Navigation Sequence",
-            "description": "Relative and absolute 'cd' calls interleaved with programs.",
+            "name": "Full Session Combining All Features",
+            "description": "One long session: cd, redirection of all three kinds, a background job, a suspended job, wait-for, fg, and wait-all.",
             "input_file": "test_cases/extra/input/16.txt",
             "output_file": "test_cases/extra/output/16.txt"
         },
         {
-            "name": "Full Session Combining All Features",
-            "description": "One long session: cd, redirection of all three kinds, a background job, a suspended job, wait-for, fg, and wait-all.",
+            "name": "Suspend, fg, Suspend Again, wait-all",
+            "description": "A job is suspended, resumed with 'fg', and suspended again. 'wait-all' must skip it.",
             "input_file": "test_cases/extra/input/17.txt",
             "output_file": "test_cases/extra/output/17.txt"
         },
         {
-            "name": "fg a Background Job, Then Suspend It",
-            "description": "Runs a job with '&', brings it forward with 'fg', and suspends it. 'jobs' must show it as stopped, and 'wait-all' must skip it rather than block.",
+            "name": "Suspend Again After fg",
+            "description": "Resumes a stopped job with 'fg', suspends it again, then finishes it with a second 'fg'.",
             "input_file": "test_cases/extra/input/18.txt",
             "output_file": "test_cases/extra/output/18.txt"
         },
         {
-            "name": "fg a Background Job, Suspend, Then wait-for",
-            "description": "Same as the previous test, but 'wait-for' must refuse the now-stopped job instead of blocking on it.",
+            "name": "Stopped Job Killed From Outside",
+            "description": "A stopped job is killed with SIGKILL by another command. 'fg' must reap it and remove it from the jobs list.",
             "input_file": "test_cases/extra/input/19.txt",
             "output_file": "test_cases/extra/output/19.txt"
         },
         {
-            "name": "Suspend, bg, fg, Suspend Again",
-            "description": "Suspends a job, resumes it with 'bg', brings it forward with 'fg', and suspends it again. It must end up marked as stopped.",
+            "name": "Stopped Job with Output Redirection",
+            "description": "Suspends 'cat > out.txt', resumes it, and checks that the input reached the file.",
             "input_file": "test_cases/extra/input/20.txt",
             "output_file": "test_cases/extra/output/20.txt"
         },
         {
-            "name": "Suspend, fg, Suspend Again, wait-all",
-            "description": "Control for the previous three tests: a job that was never in the background is suspended twice. 'wait-all' must skip it.",
+            "name": "Job Exits Non-Zero After fg",
+            "description": "A resumed job that exits with a non-zero status is still removed from the jobs list.",
             "input_file": "test_cases/extra/input/21.txt",
             "output_file": "test_cases/extra/output/21.txt"
         },
         {
-            "name": "Suspend Again After fg",
-            "description": "Resumes a stopped job with 'fg', suspends it again, then finishes it with a second 'fg'.",
+            "name": "fg the Middle Job, Then Interrupt",
+            "description": "Three stopped jobs; the middle one is resumed and interrupted, and the indices of the rest shift down.",
             "input_file": "test_cases/extra/input/22.txt",
             "output_file": "test_cases/extra/output/22.txt"
         },
         {
-            "name": "Stopped Job Killed From Outside",
-            "description": "A stopped job is killed with SIGKILL by another command. 'fg' must reap it and remove it from the jobs list.",
+            "name": "Other Commands While a Job Is Stopped",
+            "description": "Runs built-ins, a program, and a redirected program while a job is stopped, then resumes the job.",
             "input_file": "test_cases/extra/input/23.txt",
             "output_file": "test_cases/extra/output/23.txt"
         },
         {
-            "name": "Stopped Job with Output Redirection",
-            "description": "Suspends 'cat > out.txt', resumes it, and checks that the input reached the file.",
+            "name": "Suspend and Resume Repeatedly",
+            "description": "One job is suspended and resumed with 'fg' four times before it finishes.",
             "input_file": "test_cases/extra/input/24.txt",
             "output_file": "test_cases/extra/output/24.txt"
         },
         {
-            "name": "Job Exits Non-Zero After fg",
-            "description": "A resumed job that exits with a non-zero status is still removed from the jobs list.",
-            "input_file": "test_cases/extra/input/25.txt",
-            "output_file": "test_cases/extra/output/25.txt"
-        },
-        {
-            "name": "fg the Middle Job, Then Interrupt",
-            "description": "Three stopped jobs; the middle one is resumed and interrupted, and the indices of the rest shift down.",
-            "input_file": "test_cases/extra/input/26.txt",
-            "output_file": "test_cases/extra/output/26.txt"
-        },
-        {
-            "name": "Other Commands While a Job Is Stopped",
-            "description": "Runs built-ins, a program, and a redirected program while a job is stopped, then resumes the job.",
-            "input_file": "test_cases/extra/input/27.txt",
-            "output_file": "test_cases/extra/output/27.txt"
-        },
-        {
-            "name": "Suspend and Resume Repeatedly",
-            "description": "One job is suspended and resumed with 'fg' four times before it finishes.",
-            "input_file": "test_cases/extra/input/28.txt",
-            "output_file": "test_cases/extra/output/28.txt"
-        },
-        {
             "name": "fg an Index That Just Finished",
             "description": "After a resumed job completes, 'fg' on the same index is out of bounds.",
-            "input_file": "test_cases/extra/input/29.txt",
-            "output_file": "test_cases/extra/output/29.txt"
+            "input_file": "test_cases/extra/input/25.txt",
+            "output_file": "test_cases/extra/output/25.txt"
         }
     ]
 }

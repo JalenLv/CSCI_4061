@@ -1,14 +1,8 @@
-@> cat
-^C
-@> echo after-interrupt
-@> cat
-^Z
-@> echo after-suspend
-@> cat
-^C
-@> jobs
-@> fg 0
-one
-^D
-@> jobs
+@> fg
+@> bg
+@> wait-for
+@> fg -1
+@> wait-for 3
+@> wait-all
+@> echo alive
 @> exit

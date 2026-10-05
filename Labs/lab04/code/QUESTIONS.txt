@@ -31,7 +31,7 @@ QUIZ Questions Shell Pipelines
   How many pipes are created in total to run the shell command
   'cat numbers.txt | sort -n | tail -n 10 | wc -l'?
   - ( ) 4
-  - ( ) 3
+  - (X) 3
   - ( ) 1
   - ( ) 0
 
@@ -39,7 +39,7 @@ QUIZ Questions Shell Pipelines
   How many calls to dup2() are needed to run the shell command
   'cat numbers.txt | sort -n | tail -n 10 | wc -l'?
   - ( ) 8
-  - ( ) 6
+  - (X) 6
   - ( ) 3
   - ( ) 0
 
@@ -49,7 +49,7 @@ QUIZ Questions Shell Pipelines
   - ( ) cat < numbers.txt | sort -n | tail -n 10 | wc -l
   - ( ) cat numbers.txt | sort -n | tail -n 10 | wc -l > out.txt
   - ( ) cat < numbers.txt | sort -n | tail -n 10 | wc -l > out.txt
-  - ( ) Trick question: all of the above are valid.
+  - (X) Trick question: all of the above are valid.
 
 
   How many calls to dup2() are needed to run the shell command
@@ -57,7 +57,7 @@ QUIZ Questions Shell Pipelines
   - ( ) Trick question: this is not a valid shell command
   - ( ) 3
   - ( ) 4
-  - ( ) 8
+  - (X) 8
 
 
 CODE Complete pipeline_commands.c

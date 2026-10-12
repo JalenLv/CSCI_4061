@@ -32,11 +32,11 @@ QUIZ Questions Shared Memory
   - ( ) They both need to call 'shmat' with the same 'id' argument
   - ( ) They both need to call 'shm_open' with the same 'name' argument
   - ( ) Only the child needs to call 'shmat', with the correct 'id'
-  - ( ) Existing shared memory segments are inherited by the child when 'fork'
+  - (X) Existing shared memory segments are inherited by the child when 'fork'
         is called
 
   How do unrelated processes attach to the same shared memory segment?
-  - ( ) They both need to call 'shm_open' with the same 'name' argument
+  - (X) They both need to call 'shm_open' with the same 'name' argument
   - ( ) Trick question: Only related processes, like a parent and child, can
         attach to the same shared memory segment
   - ( ) The two processes need to call 'open' with the same 'path' argument
@@ -46,14 +46,14 @@ QUIZ Questions Shared Memory
   by the number of workers, and we use 'floor' to compute the chunk size for
   each worker. What is a consequence of this?
   - ( ) The last worker will have a slightly smaller chunk than the others
-  - ( ) The last worker will have a slightly larger chunk than the others
+  - (X) The last worker will have a slightly larger chunk than the others
   - ( ) The first worker will have a slightly smaller chunk than the others
   - ( ) The first worker will have a slightly larger chunk than the others
 
   Say the number of data elements to be processed in parallel is not divisible
   by the number of workers, and we use 'ceil' to compute the chunk size for
   each worker. What is a consequence of this?
-  - ( ) The last worker will have a slightly smaller chunk than the others
+  - (X) The last worker will have a slightly smaller chunk than the others
   - ( ) The last worker will have a slightly larger chunk than the others
   - ( ) The first worker will have a slightly smaller chunk than the others
   - ( ) The first worker will have a slightly larger chunk than the others
@@ -62,7 +62,7 @@ QUIZ Questions Shared Memory
   - ( ) Yes. This question is a waste of your time.
   - ( ) No, '5 / 4' will cause a runtime error while '(float) 5 / 4' will not.
   - ( ) No, '(float) 5 / 4' will cause a runtime error while '5 / 4' will not.
-  - ( ) No, '5 / 4' yields '1' while '(float) 5 / 4' yields '1.25'.
+  - (X) No, '5 / 4' yields '1' while '(float) 5 / 4' yields '1.25'.
 
 
 CODE Complete square_numbers.c

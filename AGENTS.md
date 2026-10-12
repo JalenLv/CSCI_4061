@@ -105,16 +105,19 @@ the zip is uploaded to Gradescope.
 | lab01 | `fork()`, `exec()`, `wait()` | `fork_wait.c`, `fork_exec.c` |
 | lab02 | Signals, job control, file descriptors, `dup2()` redirection | `print_nums.c`, `redirect_child.c` |
 | lab03 | Catching SIGINT with `sigaction()`, `SA_RESTART`, a global flag | `wc_signal.c` |
+| lab04 | Pipes: `pipe()`, `fork()`, `dup2()` to run `sort -n … \| tail -n 10` | `pipeline_commands.c` |
+| lab05 | Shared memory with `mmap()`, splitting work across forked worker processes | `square_numbers.c` |
 
 ## Projects
 
 - **Spec:** `Projs/projN/desc/projectN.md`. Saved Canvas pages are converted to
   Markdown with the `canvas-page-to-markdown` skill. The raw saved HTML embeds
   session tokens and the owner's name and email, so it must never be committed.
-- **Grading** (per the proj1 spec; check each new spec): quiz 10%, automated
-  tests 40% (public tests plus **hidden** ones), individual oral exam on the
-  submitted code 40%, and manual error-checking review 10% (−1 per missed check
-  or cleanup).
+- **Grading** (the same split in the proj1 and proj2 specs; check each new
+  spec): quiz 10%, automated tests 40% (public tests plus **hidden** ones),
+  individual oral exam on the submitted code 40%, and manual error-checking
+  review 10% (proj1's spec takes −1 per missed check or cleanup; proj2's gives
+  no rate).
 - **What gets graded:** only files marked `EDIT` in the spec's starter-code
   table. The autograder replaces every other file with the original, so changes
   to `Makefile`, headers or provided `.c` files are silently lost.
@@ -128,6 +131,7 @@ the zip is uploaded to Gradescope.
 | Project | What | Due | Notes |
 |---|---|---|---|
 | proj1 | `swish`, a small job-control shell: tokenizing, `cd`/`pwd`, `fork`/`exec`, `<` `>` `>>`, process groups and `tcsetpgrp`, `fg`/`bg`/`wait-for`/`wait-all` | Fri 10/02 11:59pm (Gradescope) | Reference implementation in `Projs/proj1/claudes-impl/`: its `NOTES.md` covers design choices and oral-exam Q&A, and `make test-extra` runs 25 additional tests |
+| proj2 | Two parts. `part1/`: add `\|` pipelines to `swish` with `pipe()` and `dup2()` in `run_pipelined_commands()`, using a provided, already-compiled `run_command()`. `part2/`: Hadamard product of two matrices in parallel three ways (a pipe, shared memory, threads), exposed as a Python C extension | Fri 10/30 11:59pm (Gradescope); quiz Fri 10/16 | EDIT files: `part1/swish_funcs.c`, `part2/hadamard_{pipe,shmem,threads}.c`. Hidden tests cover pipelines of more than three commands, `<` on the first command and `>`/`>>` on the last. There are no public tests for the threads version |
 
 ## Pitfalls
 

@@ -1,0 +1,138 @@
+                           __________________
+
+                            LAB 05 QUESTIONS
+                           __________________
+
+Lab Instructions
+================
+
+  Follow the instructions below to experiment with topics related to
+  this lab.
+  - For sections marked QUIZ, fill in an (X) for the appropriate
+    response in this file. Use the command 'make test-quiz' to see if
+    all of your answers are correct.
+  - For sections marked CODE, complete the code indicated. Use the
+    command 'make test-code' to check if your code is complete.
+  - DO NOT CHANGE any parts of this file except the QUIZ sections as it
+    may interfere with the tests otherwise.
+  - If your 'QUESTIONS.txt' file seems corrupted, restore it by copying
+    over the 'QUESTIONS.txt.bak' backup file.
+  - When you complete the exercises, check your answers with 'make test'
+    and if all is well, create a zip file with 'make zip' and upload it
+    to Gradescope. Ensure that the autograder there reflects your local
+    results.
+  - IF YOU WORK IN A GROUP only one member needs to submit and then add
+    the names of their group.
+
+
+QUIZ Questions Shared Memory
+============================
+
+  How can a parent and child process attach to the same shared memory segment?
+  - ( ) They both need to call 'shmat' with the same 'id' argument
+  - ( ) They both need to call 'shm_open' with the same 'name' argument
+  - ( ) Only the child needs to call 'shmat', with the correct 'id'
+  - ( ) Existing shared memory segments are inherited by the child when 'fork'
+        is called
+
+  How do unrelated processes attach to the same shared memory segment?
+  - ( ) They both need to call 'shm_open' with the same 'name' argument
+  - ( ) Trick question: Only related processes, like a parent and child, can
+        attach to the same shared memory segment
+  - ( ) The two processes need to call 'open' with the same 'path' argument
+  - ( ) None of the above
+
+  Say the number of data elements to be processed in parallel is not divisible
+  by the number of workers, and we use 'floor' to compute the chunk size for
+  each worker. What is a consequence of this?
+  - ( ) The last worker will have a slightly smaller chunk than the others
+  - ( ) The last worker will have a slightly larger chunk than the others
+  - ( ) The first worker will have a slightly smaller chunk than the others
+  - ( ) The first worker will have a slightly larger chunk than the others
+
+  Say the number of data elements to be processed in parallel is not divisible
+  by the number of workers, and we use 'ceil' to compute the chunk size for
+  each worker. What is a consequence of this?
+  - ( ) The last worker will have a slightly smaller chunk than the others
+  - ( ) The last worker will have a slightly larger chunk than the others
+  - ( ) The first worker will have a slightly smaller chunk than the others
+  - ( ) The first worker will have a slightly larger chunk than the others
+
+  Will the C expressions '5 / 4' and '(float) 5 / 4' give the same answer?
+  - ( ) Yes. This question is a waste of your time.
+  - ( ) No, '5 / 4' will cause a runtime error while '(float) 5 / 4' will not.
+  - ( ) No, '(float) 5 / 4' will cause a runtime error while '5 / 4' will not.
+  - ( ) No, '5 / 4' yields '1' while '(float) 5 / 4' yields '1.25'.
+
+
+CODE Complete square_numbers.c
+===============================
+
+  Complete the code in 'square_numbers.c'. The goal of this code is compute the
+  square of each element of 'numbers', the global array declared at the top of
+  the file. Rather than compute the results sequentially, they will be computed
+  in parallel by a fixed-size group of worker processes. The number of workers
+  is specified as a command-line argument.
+
+  The code attempts to print out the squared values at the end of its
+  execution. Your program should produce the correct results regardless of the
+  number of workers chosen by the user. You should also aim to divide up the
+  work (chunks of the 'numbers' array) as evenly as possible among the workers.
+
+  Here's the rough sequence of steps your code should follow:
+
+  1. Fork the specified number of worker processes, ensuring that they all have
+     access to a single shared memory segment to hold the results (squared
+     values), also accessible from the original parent process.
+  2. Each child computes the square of each element in its assigned chunk of
+     the 'numbers' array. The chunks should be disjoint, meaning no workers try
+     to square any of the same elements.
+  3. In the parent, print out the squared values once the data is ready.
+
+  A correct run of the 'square_numbers' program looks like the following:
+  ,----
+  | > make                          # build pipeline_commands program
+  | gcc -Wall -Werror -g -o square_numbers square_numbers.c
+  | > ./square_numbers 4            # 4 parallel worker processes
+  | Squares:
+  | 5625
+  | 9
+  | 9801
+  | 1296
+  | 2209
+  | 7744
+  | 8649
+  | 8649
+  | 0
+  | 9216
+  | 3969
+  | 729
+  | 144
+  | 4489
+  | 5625
+  | 484
+  | 1156
+  | 1681
+  | 3721
+  | 2304
+  | 169
+  | 10000
+  | 7396
+  | 225
+  | 7569
+  | 1225
+  | 361
+  | 8464
+  | 3481
+  | 4900
+  | 5329
+  | 4225
+  | 1225
+  | 1225
+  | 1369
+  | 1936
+  | 9
+  | 400
+  | 1369
+  | 729
+  `----

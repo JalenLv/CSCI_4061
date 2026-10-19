@@ -1,0 +1,19 @@
+{
+    "name": "Lab 06",
+    "tests": [
+        {
+            "name": "Quiz - QUESTIONS.txt",
+            "description": "Check if the answers in QUESTIONS.txt are correct. This file must be edited so that the correct ( ) choices are replaced with (X) and no other changes are made to the file.",
+            "command": "socrates QUESTIONS.txt -c test_cases/resources/quiz_sum.json -a",
+            "output_file": "test_cases/output/quiz.txt",
+            "points": 0.5
+        },
+        {
+            "name": "Code - Square Root List",
+            "description": "Checks to see if square roots are computed successfully for positive numbers, while an error occurs if a negative number is found",
+            "command": "python3 square_root_main.py",
+            "output_file": "test_cases/output/square_roots.txt",
+            "points": 0.5
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+List 1:
+2.000
+2.828
+3.873
+4.000
+4.796
+6.481
+10.392
+
+List 2:
+Cannot compute square root of negative value

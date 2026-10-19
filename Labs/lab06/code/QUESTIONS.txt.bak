@@ -1,0 +1,108 @@
+                           __________________
+
+                            LAB 06 QUESTIONS
+                           __________________
+
+Lab Instructions
+================
+
+  Follow the instructions below to experiment with topics related to
+  this lab.
+  - For sections marked QUIZ, fill in an (X) for the appropriate
+    response in this file. Use the command 'make test-quiz' to see if
+    all of your answers are correct.
+  - For sections marked CODE, complete the code indicated. Use the
+    command 'make test-code' to check if your code is complete.
+  - DO NOT CHANGE any parts of this file except the QUIZ sections as it
+    may interfere with the tests otherwise.
+  - If your 'QUESTIONS.txt' file seems corrupted, restore it by copying
+    over the 'QUESTIONS.txt.bak' backup file.
+  - When you complete the exercises, check your answers with 'make test'
+    and if all is well, create a zip file with 'make zip' and upload it
+    to Gradescope. Ensure that the autograder there reflects your local
+    results.
+  - IF YOU WORK IN A GROUP only one member needs to submit and then add
+    the names of their group.
+
+
+QUIZ Questions C Extensions for Python
+======================================
+
+  Say we call 'PyArg_ParseTuple' at the beginning of a C function with format
+  string "O!" and specify as the type argument 'PyList_Type'. What happens if
+  the argument passed to the function was not a valid Python list?
+  - ( ) The argument is converted to a list following Python conventions.
+  - ( ) 'NULL' will be saved as the value of the argument
+  - ( ) A 'ValueError' will be raised by the function
+  - ( ) A 'TypeError' will be raised by the function
+
+  Say we call 'PyList_New', and the function successfully creates a new list
+  object. What is true about the object's reference count?
+  - ( ) The list's reference count is set by an argument to 'PyList_New'.
+  - ( ) The reference count is currently set to 0. So we don't need to do
+        anything to clean up the object.
+  - ( ) The reference count is currently set to 0. If we want to return this
+        list from the C function back to Python code, we need to explicitly
+        call 'Py_INCREF'.
+  - ( ) The reference count is currently 1. If we no longer need the list
+        in the future, we need to call 'Py_DECREF' to avoid a memory leak.
+
+  Which C function should be called to indicate that a memory allocation failed
+  when control is passed back to Python?
+  - ( ) 'PyErr_Format'
+  - ( ) 'PyErr_NoMemory'
+  - ( ) 'PyErr_SetFromErrno'
+  - ( ) 'PcLoadLetter'
+
+  What happens to the reference count for the object 'o' when we call the C
+  function 'PyList_SetItem(list, i, o)'?
+  - ( ) The object's reference count increases
+  - ( ) The object's reference count decreases
+  - ( ) The object's reference count stays the same
+
+
+CODE Complete square_root.c
+===============================
+
+  Complete the code in 'square_root.c'. This is a very small C extension for
+  Python with just one function, 'square_root'. This function accepts as input
+  a Python list of integers, computes the square root of each integer, and
+  returns a new list of floating-point numbers with the results. Expressed as
+  pseudocode:
+
+      output_list[i] = sqrt(input_list[i])
+
+  The function only succeeds if every element in the input list is a positive
+  number. If the function encounters a negative number, it should indicate a
+  failure by raising a 'ValueError' with the message "Cannot compute square
+  root of negative value".
+
+  The 'square_root' function should take the following steps:
+
+  1. Parse the argument passed in from Python and report an error if it is not
+     a Python list.
+  2. Create a new list to hold the square root results.
+  3. Iterate over each value in the input list and compute its square root.
+     Store the result in the output list.
+  4. If a negative value is seen, report a 'ValueError' back to Python. Don't
+     forget any necessary cleanup.
+  5. Return the list of square root values.
+
+  We have already provided a simple Python program in 'square_root_main.py' to
+  exercise this function for you. Here is the expected output of the test
+  program:
+
+  ,----
+  | > python3 square_root_main.py
+  | List 1:
+  | 2.000
+  | 2.828
+  | 3.873
+  | 4.000
+  | 4.796
+  | 6.481
+  | 10.392
+  |
+  | List 2:
+  | Could not compute square roots due to invalid list element
+  `----

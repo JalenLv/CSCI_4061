@@ -34,7 +34,7 @@ QUIZ Questions C Extensions for Python
   - ( ) The argument is converted to a list following Python conventions.
   - ( ) 'NULL' will be saved as the value of the argument
   - ( ) A 'ValueError' will be raised by the function
-  - ( ) A 'TypeError' will be raised by the function
+  - (X) A 'TypeError' will be raised by the function
 
   Say we call 'PyList_New', and the function successfully creates a new list
   object. What is true about the object's reference count?
@@ -44,13 +44,13 @@ QUIZ Questions C Extensions for Python
   - ( ) The reference count is currently set to 0. If we want to return this
         list from the C function back to Python code, we need to explicitly
         call 'Py_INCREF'.
-  - ( ) The reference count is currently 1. If we no longer need the list
+  - (X) The reference count is currently 1. If we no longer need the list
         in the future, we need to call 'Py_DECREF' to avoid a memory leak.
 
   Which C function should be called to indicate that a memory allocation failed
   when control is passed back to Python?
   - ( ) 'PyErr_Format'
-  - ( ) 'PyErr_NoMemory'
+  - (X) 'PyErr_NoMemory'
   - ( ) 'PyErr_SetFromErrno'
   - ( ) 'PcLoadLetter'
 
@@ -58,7 +58,7 @@ QUIZ Questions C Extensions for Python
   function 'PyList_SetItem(list, i, o)'?
   - ( ) The object's reference count increases
   - ( ) The object's reference count decreases
-  - ( ) The object's reference count stays the same
+  - (X) The object's reference count stays the same
 
 
 CODE Complete square_root.c

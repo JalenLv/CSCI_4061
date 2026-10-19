@@ -33,6 +33,45 @@ PyMODINIT_FUNC PyInit_square_root(void) {
 }
 
 PyObject *square_roots(PyObject *self, PyObject *args) {
-    // TODO Complete this function
-    return NULL;
+    PyObject *arg_list;
+    if (!PyArg_ParseTuple(args, "O!", &PyList_Type, &arg_list))
+        return NULL;
+
+    int list_len = PyList_Size(arg_list);
+    // `result_list` owned
+    PyObject *result_list = PyList_New(list_len);
+    if (!result_list)
+        return NULL;
+
+    for (int i = 0; i < list_len; i++) {
+        // `curr_obj` borrowed
+        PyObject *curr_obj = PyList_GetItem(arg_list, i);
+        if (!PyLong_Check(curr_obj)) {
+            PyErr_SetString(
+                PyExc_ValueError,
+                "Could not compute square roots due to invalid list element");
+            // `result_list` released
+            Py_DecRef(result_list);
+            return NULL;
+        }
+
+        double curr = PyLong_AsDouble(curr_obj);
+        if (curr < 0) {
+            PyErr_SetString(PyExc_ValueError,
+                            "Cannot compute square root of negative value");
+            // `result_list` released
+            Py_DecRef(result_list);
+            return NULL;
+        }
+
+        double result = sqrt(curr);
+        // `result_obj` owned
+        PyObject *result_obj = PyFloat_FromDouble(result);
+
+        // `result_obj` moved
+        PyList_SetItem(result_list, i, result_obj);
+    }
+
+    // `result_list` moved
+    return result_list;
 }

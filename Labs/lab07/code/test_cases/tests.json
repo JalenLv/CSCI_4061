@@ -1,0 +1,19 @@
+{
+    "name": "Lab 07",
+    "tests": [
+        {
+            "name": "Quiz - QUESTIONS.txt",
+            "description": "Check if the answers in QUESTIONS.txt are correct. This file must be edited so that the correct ( ) choices are replaced with (X) and no other changes are made to the file.",
+            "command": "socrates QUESTIONS.txt -c test_cases/resources/quiz_sum.json -a",
+            "output_file": "test_cases/output/quiz.txt",
+            "points": 0.5
+        },
+        {
+            "name": "Code - Multithreaded Sum",
+            "description": "Checks to see if the correct sum across all files is computed by the worker threads. Also checks that the thread sanitizer (TSAN) reports no failures",
+            "command": "./sum_files",
+            "output_file": "test_cases/output/sum_files.txt",
+            "points": 0.5
+        }
+    ]
+}

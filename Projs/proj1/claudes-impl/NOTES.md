@@ -195,3 +195,16 @@ spec only describes those commands on stopped jobs.
 - Background jobs that finish are not reaped until `wait-for`, `wait-all`, or
   `fg` asks about them, so they sit as zombies until then. A real shell uses a
   `SIGCHLD` handler; this project's design deliberately doesn't.
+
+## Known bugs and quirks (left unfixed)
+
+- **`wait-all` can drop a running job.** If `waitpid()` fails, the job stays
+  `BACKGROUND` and the cleanup removes it unreaped. Ctrl-Z during `wait-all`
+  under valgrind triggers it (`EINTR`). Likely fix: retry `waitpid()` on
+  `EINTR` in both wait functions.
+- **Without valgrind, Ctrl-Z during `wait-*` does nothing under testius**: the
+  shell is a session leader, so its group is orphaned. From an interactive
+  `bash`, Ctrl-Z stops `swish` itself.
+- **Under valgrind, Ctrl-Z at an idle prompt with a background job running
+  ends `swish`** (`fgets()` returns NULL). The owner's code does the same.
+  Cause unknown; under testius it ended when the background `sleep 3` did.

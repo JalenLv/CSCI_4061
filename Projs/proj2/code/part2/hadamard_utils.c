@@ -10,13 +10,13 @@ int *read_matrix_from_file(const char *file_name, unsigned *n_rows, unsigned *n_
                            int sh_mem) {
     FILE *f = fopen(file_name, "r");
     if (f == NULL) {
-        PyErr_SetFromErrno(PyExc_OSError);
+        perror("fopen");
         return NULL;
     }
 
     if (fread(n_rows, sizeof(*n_rows), 1, f) != 1 ||
         fread(n_columns, sizeof(*n_columns), 1, f) != 1) {
-        PyErr_SetString(PyExc_OSError, "Unable to read dimensions from matrix file\n");
+        fprintf(stderr, "Unable to read dimensions from matrix file\n");
         fclose(f);
         return NULL;
     }
@@ -28,7 +28,7 @@ int *read_matrix_from_file(const char *file_name, unsigned *n_rows, unsigned *n_
         matrix_data =
             mmap(NULL, mat_size, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);
         if (matrix_data == MAP_FAILED) {
-            PyErr_SetFromErrno(PyExc_OSError);
+            perror("mmap");
             fclose(f);
             return NULL;
         }
@@ -36,12 +36,12 @@ int *read_matrix_from_file(const char *file_name, unsigned *n_rows, unsigned *n_
         matrix_data = malloc(mat_size);
         if (matrix_data == NULL) {
             fclose(f);
-            return PyErr_NoMemory();
+            return NULL;
         }
     }
 
     if (fread(matrix_data, sizeof(int), total_elems, f) < total_elems) {
-        PyErr_SetString(PyExc_OSError, "Unable to read from matrix data file\n");
+        fprintf(stderr, "Unable to read from matrix data file\n");
         if (sh_mem) {
             munmap(matrix_data, mat_size);
         } else {
@@ -52,7 +52,7 @@ int *read_matrix_from_file(const char *file_name, unsigned *n_rows, unsigned *n_
     }
 
     if (fclose(f) != 0) {
-        PyErr_SetFromErrno(PyExc_OSError);
+        perror("fclose");
         if (sh_mem) {
             munmap(matrix_data, mat_size);
         } else {

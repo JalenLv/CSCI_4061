@@ -20,10 +20,7 @@ struct element {
 };
 
 /*
- * Function executed in each child process to compute its portion of the hadamard product
- * Declared here so it can be referenced in hadamard_pipe(). Complete the
- * definition at the bottom of this file.
- *
+ * Function called by each child process to perform its portion of work
  * 'a': Pointer to elements for first matrix operand
  * 'b': Pointer to elements for second matrix operand
  * 'start': Index (in flattened representation) of first element of matrix portion
@@ -32,7 +29,11 @@ struct element {
  *
  * Returns 0 on success or -1 on failure
  */
-static int worker(const int *a, const int *b, unsigned start, unsigned end, int pipe_fd);
+// TODO: Uncomment this function definition. Implement the function,
+// and call it from child processes.
+// static int worker(const int *a, const int *b, unsigned start, unsigned end, int pipe_fd) {
+//     return 0;
+// }
 
 PyObject *hadamard_pipe(PyObject *self, PyObject *args) {
     const char *mat_a_file;
@@ -47,12 +48,14 @@ PyObject *hadamard_pipe(PyObject *self, PyObject *args) {
     unsigned a_cols;
     int *mat_a_data = read_matrix_from_file(mat_a_file, &a_rows, &a_cols, 0);
     if (mat_a_data == NULL) {
+        PyErr_SetString(PyExc_OSError, "Failed to read matrix data from file");
         return NULL;
     }
     unsigned b_rows;
     unsigned b_cols;
     int *mat_b_data = read_matrix_from_file(mat_b_file, &b_rows, &b_cols, 0);
     if (mat_b_data == NULL) {
+        PyErr_SetString(PyExc_OSError, "Failed to read matrix data from file");
         free(mat_a_data);
         return NULL;
     }
@@ -69,18 +72,4 @@ PyObject *hadamard_pipe(PyObject *self, PyObject *args) {
      */
 
     Py_RETURN_NONE;
-}
-
-// Called once by each child process
-static int worker(const int *a, const int *b, unsigned start, unsigned end, int pipe_fd) {
-    /*
-     * TODO Complete this function's implementation
-     * Open the two matrix data files
-     * Read elements from the matrix files corresponding to this child's assigned
-     * portion of the matrix
-     * Multiply the two elements, then send result via pipe
-     * Don't forget proper error handling and cleanup!
-     */
-
-    return 0;
 }

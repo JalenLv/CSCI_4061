@@ -6,7 +6,7 @@ ARCH = $(shell uname -m)
 .PHONY: clean test clean-tests zip
 
 hadamard.cpython-310-$(ARCH)-linux-gnu.so: hadamard_pipe.c hadamard_shmem.c hadamard_threads.c
-	pip install -e . -qq
+	pip install -e . -qq --no-build-isolation
 
 ifdef testnum
 test: hadamard.cpython-310-$(ARCH)-linux-gnu.so

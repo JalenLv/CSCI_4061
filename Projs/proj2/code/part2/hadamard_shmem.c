@@ -14,9 +14,6 @@
 
 /*
  * Function executed in each child process to compute its portion of the hadamard product
- * Declared here so it can be referenced in hadamard_shmem. Fill in the definition at
- * the end of this file.
- *
  * 'a': Pointer to shared memory segment storing first matrix operand
  * 'b': Pointer to shared memory segment storing second matrix operand
  * 'c': Pointer to shared memory segment storing result matrix
@@ -26,7 +23,17 @@
  *
  * Returns 0 on success or -1 on failure
  */
-static int worker(int *a, int *b, int *c, unsigned start, unsigned end, unsigned mapped_size);
+// TODO: Uncomment the function definition below and complete it
+// static int worker(int *a, int *b, int *c, unsigned start, unsigned end, unsigned mapped_size) {
+//     /*
+//      * TODO Implement this function
+//      * Multiply each pair of elements from the assigned portion of the input
+//      * matrices and store in the result matrix.
+//      * Don't forget error handling and cleanup!
+//      */
+//
+//     return 0;
+// }
 
 PyObject *hadamard_shmem(PyObject *self, PyObject *args) {
     /*
@@ -43,16 +50,4 @@ PyObject *hadamard_shmem(PyObject *self, PyObject *args) {
      */
 
     Py_RETURN_NONE;
-}
-
-// Called once per child process
-static int worker(int *a, int *b, int *c, unsigned start, unsigned end, unsigned mapped_size) {
-    /*
-     * TODO Complete this function
-     * Multiply each pair of elements from the assigned portion of the input
-     * matrices and store in the result matrix.
-     * Don't forget error handling and cleanup!
-     */
-
-    return 0;
 }

@@ -33,7 +33,15 @@ struct thread_args {
  * Complete the definition at the bottom of this file.
  * Returns NULL
  */
-static void *worker(void *data);
+// TODO Uncomment this function definition and complete it
+// static void *worker(void *data) {
+//     /*
+//      * TODO Complete this function
+//      * Multiply each pair of elements and store the result, for the assigned
+//      * portion of the input matrices.
+//      */
+//     return NULL;
+// }
 
 PyObject *hadamard_threads(PyObject *self, PyObject *args) {
     /*
@@ -49,12 +57,4 @@ PyObject *hadamard_threads(PyObject *self, PyObject *args) {
      */
 
     Py_RETURN_NONE;
-}
-
-void *worker(void *p) {
-    /*
-     * TODO Complete this function
-     * Multiply each pair of elements and store the result, for the assigned
-     * portion of the input matrices.
-     */
 }

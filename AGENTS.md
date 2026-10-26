@@ -39,21 +39,17 @@ the repo root:
 
 ```sh
 IMG=$(docker images --format '{{.Repository}}:{{.Tag}}' | grep '^vsc-csci_4061' | head -1)
-docker run --rm -i --ulimit nofile=1024:1024 --cap-add SYS_PTRACE \
-  --security-opt seccomp=unconfined --user "$(id -u):$(id -g)" -e HOME=/tmp \
-  -v "$PWD":/work -w /work/<path/to/code> "$IMG" bash -lc 'make && make test'
+docker run --rm -i \
+  --ulimit nofile=1024:1024 --cap-add SYS_PTRACE \
+  --security-opt seccomp=unconfined \
+  -v "$PWD":/work -w /work/<path/to/code> \
+  "$IMG" bash -lc '<command>'
 ```
 
 - Use `-it` instead of `-i` to drive a program interactively.
-- `--user` keeps build output owned by the host user. Keep it, and don't switch
-  to `--user root` on the real mount: that is how root-owned files end up in
-  `code/` (see Pitfalls). If `code/` already holds root-owned output from a
-  devcontainer run, a `--user` run there fails, because testius can't empty the
-  root-owned `test_results/`. Copy the sources, `Makefile` and `test_cases/`
-  into a scratch directory and test there instead. `--user root` is harmless
-  against a scratch copy.
-- `HOME=/tmp` gives that uid a usable home directory, since the image's
-  passwd file doesn't list it. Some tests `cd` to `$HOME`.
+- The container runs as root (the image's default, and VS Code's). Don't pass
+  `--user`: some starter build steps only work as root (a reference's
+  `NOTES.md` records the cases).
 - POSIX man pages are installed in the image: `man 2 fork`, `man 7 signal`.
 
 **testius** is the course test runner. Each `code/` dir has a JSON manifest
@@ -74,7 +70,7 @@ implementation (see Ground rules) may come with its own extra tests, for example
 `Projs/proj1/claudes-impl/test_cases/extra/`. They're written to the spec, so
 they also stand in for hidden tests against the owner's code. The owner's
 `code/` has no target for them, and agents don't add files there. Instead, make
-a fresh scratch copy of it (see the `--user` note above), copy the reference's
+a fresh scratch copy of it, copy the reference's
 `test_cases/extra/` into the copy's `test_cases/`, and run testius on that
 manifest in the copy. These tests can check strings the spec never defines, or
 features the owner hasn't written yet. Check Pitfalls for known cases before
@@ -135,11 +131,13 @@ the zip is uploaded to Gradescope.
 
 ## Pitfalls
 
-- **Root-owned files.** VS Code's devcontainer runs as root. Committing from
-  inside it leaves `.git` objects, the index and refs owned by root, which
-  breaks host-side git. It happened on 09-21 and 09-30, and `chown` fixed it.
-  Builds made there also leave root-owned `.o` files and binaries in `code/`.
-  If you get a permission error, check ownership first.
+- **Root-owned files.** Docker may be rootful, so container root is host root
+  and everything a build or test writes into the mount is root-owned on the
+  host (not so under rootless Docker or podman). The host user then can't
+  delete or overwrite those files. So run `make clean clean-tests` inside the
+  container before host-side `git clean`, edits or deletes, and never commit
+  from inside it: that leaves `.git` root-owned and breaks host git (`chown`
+  fixes it). On a permission error, check `find . -user root` first.
 - **Build output.** Lab03 and the project `code/` dirs have a `.gitignore` for
   binaries, `*.o`, `test_results/`, the submission zip and test scratch files.
   Lab01 and lab02 don't have one, and their submission zips are tracked.

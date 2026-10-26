@@ -39,11 +39,11 @@ QUIZ Posix Thread Basics
         'void *'
   - ( ) A pointer to a function that takes one argument of type 'void *' and
         has return type 'void'
-  - ( ) A pointer to a function that takes one argument of type 'void *' and
+  - (X) A pointer to a function that takes one argument of type 'void *' and
         has return type 'void *'
 
   When does a new thread start executing its assigned function?
-  - ( ) Immediately once 'pthread_create' completes successfully
+  - (X) Immediately once 'pthread_create' completes successfully
   - ( ) Once 'pthread_start' is called, after a successful 'pthread_create'
   - ( ) Once 'pthread_join' is called, after a successful 'pthread_create'
   - ( ) None of the above
@@ -51,7 +51,7 @@ QUIZ Posix Thread Basics
   What is the purpose of the second argument to 'pthread_join'?
   - ( ) It is a set of flag values specifying how the join operation behaves
   - ( ) It specifies which thread to join
-  - ( ) It is used to store the thread's return value
+  - (X) It is used to store the thread's return value
   - ( ) It is used to specify a timeout period after which the join operation
         gives up and returns an error
 
@@ -98,7 +98,7 @@ QUIZ Thread Synchronization
   What specific error does TSAN report with the 'sum_files' program?
   - ( ) A data hazard with the 'worker' function
   - ( ) A control hazard with the 'global_sum' variable
-  - ( ) A data race with the 'global_sum' variable
+  - (X) A data race with the 'global_sum' variable
   - ( ) Unsynchronized access to the 'global_sum' variable
 
   If you declare a global 'pthread_mutex_t' variable, what is the best way to
@@ -108,14 +108,14 @@ QUIZ Thread Synchronization
   - ( ) Call 'pthread_mutex_init' at the beginning of 'main', before any threads
         use the mutex.
   - ( ) Assign the variable the pre-defined value 'PTHREAD_COND_INITIALIZER'
-  - ( ) Assign the variable the pre-defined value 'PTHREAD_MUTEX_INITIALIZER'
+  - (X) Assign the variable the pre-defined value 'PTHREAD_MUTEX_INITIALIZER'
 
   How can we properly error-check a call to 'pthread_mutex_lock'?
   - ( ) Check if the function returned 0, then use 'perror' to print out an
         informative message.
   - ( ) Check if the function returned a non-zero value, then use 'perror' to
         print out an informative message
-  - ( ) Save the function's return value to a variable, check if it is
+  - (X) Save the function's return value to a variable, check if it is
         non-zero,then use 'strerror' to convert this number to an informative
         message.
   - ( ) This function cannot fail, so no error checking is necessary.

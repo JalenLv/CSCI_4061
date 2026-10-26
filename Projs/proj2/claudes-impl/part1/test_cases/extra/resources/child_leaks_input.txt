@@ -1,0 +1,7 @@
+this_command_does_not_exist | wc -l
+true | this_command_does_not_exist | wc -l
+cat /dev/null | sort | this_command_does_not_exist
+cat < no_such_file.txt | wc -l
+cat /dev/null | cat > no_such_dir/out.txt
+echo x | cat
+exit

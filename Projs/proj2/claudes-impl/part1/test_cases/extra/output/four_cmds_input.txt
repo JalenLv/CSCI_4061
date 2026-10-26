@@ -1,0 +1,7 @@
+@> cat < test_cases/resources/numbers.txt | sort -n | uniq | tail -n 3
+845
+4235
+35785
+@> sort -rn < test_cases/resources/numbers.txt | uniq | tail -n 2 | paste -sd ,
+7,3
+@> exit

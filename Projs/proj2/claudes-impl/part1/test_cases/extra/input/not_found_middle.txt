@@ -1,0 +1,3 @@
+@> true | this_command_does_not_exist | wc -l
+@> echo after | cat
+@> exit

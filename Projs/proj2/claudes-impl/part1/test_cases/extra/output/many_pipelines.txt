@@ -1,0 +1,2203 @@
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> echo x | cat
+x
+@> ls -l /proc/self/fd | grep -c pipe:
+1
+@> exit

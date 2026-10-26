@@ -1,0 +1,29 @@
+-7, 16, -27
+-40, 55, -72
+fopen: No such file or directory
+OSError: Failed to read matrix data from file
+fopen: No such file or directory
+OSError: Failed to read matrix data from file
+Unable to read from matrix data file
+OSError: Failed to read matrix data from file
+-7, 16, -27
+-40, 55, -72
+fopen: No such file or directory
+OSError: Failed to read matrix data from file
+fopen: No such file or directory
+OSError: Failed to read matrix data from file
+Unable to read from matrix data file
+OSError: Failed to read matrix data from file
+-7, 16, -27
+-40, 55, -72
+fopen: No such file or directory
+OSError: Failed to read matrix data from file
+fopen: No such file or directory
+OSError: Failed to read matrix data from file
+Unable to read from matrix data file
+OSError: Failed to read matrix data from file
+-7, 16, -27
+-40, 55, -72
+leaked file descriptors: 0
+leaked shared memory mappings: 0
+child processes left: none

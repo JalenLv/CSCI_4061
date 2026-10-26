@@ -20,12 +20,12 @@ the owner writes themselves. That shapes most of the rules below.
 ## Layout
 
 ```
-.devcontainer/          Course Docker image (Ubuntu 22.04, gcc, gdb, valgrind, testius, socrates)
-Labs/labNN/labNN.pdf    Lab slides
-Labs/labNN/code/        Unpacked starter zip, completed in place
-Projs/projN/desc/       Spec, converted from the Canvas page to projectN.md, plus figures
-Projs/projN/code/       Unpacked starter zip, completed in place (the owner's submission)
-Projs/projN/<name>/     Agent-owned reference implementation, if one was requested
+.devcontainer/             Course Docker image (Ubuntu 22.04, gcc, gdb, valgrind, testius, socrates)
+Labs/labNN/labNN.pdf       Lab slides
+Labs/labNN/code/           Unpacked starter zip, completed in place
+Projs/projN/desc/          Spec, converted from the Canvas page to projectN.md, plus figures
+Projs/projN/code/          Unpacked starter zip, completed in place (the owner's submission)
+Projs/projN/claudes-impl/  Agent-owned reference implementation, if one was requested
 ```
 
 The history follows a fixed pattern: `Init labNN` or `Init projN` commits the
@@ -127,7 +127,7 @@ the zip is uploaded to Gradescope.
 | Project | What | Due | Notes |
 |---|---|---|---|
 | proj1 | `swish`, a small job-control shell: tokenizing, `cd`/`pwd`, `fork`/`exec`, `<` `>` `>>`, process groups and `tcsetpgrp`, `fg`/`bg`/`wait-for`/`wait-all` | Fri 10/02 11:59pm (Gradescope) | Reference implementation in `Projs/proj1/claudes-impl/`: its `NOTES.md` covers design choices and oral-exam Q&A, and `make test-extra` runs 25 additional tests |
-| proj2 | Two parts. `part1/`: add `\|` pipelines to `swish` with `pipe()` and `dup2()` in `run_pipelined_commands()`, using a provided, already-compiled `run_command()`. `part2/`: Hadamard product of two matrices in parallel three ways (a pipe, shared memory, threads), exposed as a Python C extension | Fri 10/30 11:59pm (Gradescope); quiz Fri 10/16 | EDIT files: `part1/swish_funcs.c`, `part2/hadamard_{pipe,shmem,threads}.c`. Hidden tests cover pipelines of more than three commands, `<` on the first command and `>`/`>>` on the last. There are no public tests for the threads version |
+| proj2 | Two parts. `part1/`: add `\|` pipelines to `swish` with `pipe()` and `dup2()` in `run_pipelined_commands()`, using a provided, already-compiled `run_command()`. `part2/`: Hadamard product of two matrices in parallel three ways (a pipe, shared memory, threads), exposed as a Python C extension | Fri 10/30 11:59pm (Gradescope); quiz Fri 10/16 | EDIT files: `part1/swish_funcs.c`, `part2/hadamard_{pipe,shmem,threads}.c`. Hidden tests cover pipelines of more than three commands, `<` on the first command and `>`/`>>` on the last. There are no public tests for the threads version. Reference implementation in `Projs/proj2/claudes-impl/`: its `NOTES.md` files cover the learning route, design choices and oral-exam Q&A, and `make test-extra-part1` and `make test-extra-part2` run 20 and 30 additional tests |
 
 ## Pitfalls
 
@@ -141,6 +141,10 @@ the zip is uploaded to Gradescope.
 - **Build output.** Lab03 and the project `code/` dirs have a `.gitignore` for
   binaries, `*.o`, `test_results/`, the submission zip and test scratch files.
   Lab01 and lab02 don't have one, and their submission zips are tracked.
+- **Provided objects.** Starter code can ship prebuilt objects the Makefile
+  links against (proj2's `part1/swish_funcs_provided_*.o`). A blanket `*.o`
+  rule hides them, so whitelist them (`!swish_funcs_provided_*.o`) and keep
+  them tracked.
 - **Messages the spec doesn't define.** A reference's extra tests expect the
   reference's own wording wherever the spec leaves a message open, such as a
   missing `fg` index. Different wording in the owner's code isn't a bug, so

@@ -1,0 +1,262 @@
+{
+    "name": "Swish Extra Tests",
+    "tests": [
+        {
+            "name": "Four-Command Pipeline",
+            "description": "Four commands, three pipes: counts the distinct values in numbers.txt (30 lines, 24 distinct).",
+            "command": "./swish",
+            "prompt": "@>",
+            "input_file": "test_cases/extra/input/four_cmds.txt",
+            "output_file": "test_cases/extra/output/four_cmds.txt",
+            "use_valgrind": true
+        },
+        {
+            "name": "Five-Command Pipeline",
+            "description": "Five commands where every stage changes the data, so a dropped or reordered stage shows up: 30,23,13,3 reversed character by character.",
+            "command": "./swish",
+            "prompt": "@>",
+            "input_file": "test_cases/extra/input/five_cmds.txt",
+            "output_file": "test_cases/extra/output/five_cmds.txt",
+            "use_valgrind": true
+        },
+        {
+            "name": "Seven-Command Word Count Pipeline",
+            "description": "The spec's seven-command word-frequency pipeline shape (tr, tr, sort, uniq -c, sort -n, tail) on a small text whose top four counts are distinct.",
+            "command": "./swish",
+            "prompt": "@>",
+            "input_file": "test_cases/extra/input/seven_cmds.txt",
+            "output_file": "test_cases/extra/output/seven_cmds.txt",
+            "use_valgrind": true
+        },
+        {
+            "name": "Ten-Command Pipeline",
+            "description": "Ten commands; each sed appends one letter, so the output proves every stage ran once and in order.",
+            "command": "./swish",
+            "prompt": "@>",
+            "input_file": "test_cases/extra/input/ten_cmds.txt",
+            "output_file": "test_cases/extra/output/ten_cmds.txt",
+            "use_valgrind": true
+        },
+        {
+            "name": "Input Redirection on the First of Four Commands",
+            "description": "'<' on the first command of a four-command pipeline, once with cat and once with sort taking options before '<'.",
+            "command": "./swish",
+            "prompt": "@>",
+            "input_file": "test_cases/extra/input/four_cmds_input.txt",
+            "output_file": "test_cases/extra/output/four_cmds_input.txt",
+            "use_valgrind": true
+        },
+        {
+            "type": "sequence",
+            "name": "Output Redirection on the Last of Five Commands",
+            "description": "'>' on the last command of a five-command pipeline; nothing reaches the terminal and the file holds the five largest distinct values.",
+            "tests": [
+                {
+                    "name": "Execute Pipeline",
+                    "description": "Run the pipeline(s) in the swish shell",
+                    "command": "./swish",
+                    "prompt": "@>",
+                    "input_file": "test_cases/extra/input/five_cmds_output.txt",
+                    "output_file": "test_cases/extra/output/five_cmds_output_run.txt",
+                    "use_valgrind": true
+                },
+                {
+                    "name": "Check Output File",
+                    "description": "Display contents of redirection target to check its correctness",
+                    "command": "cat out.txt",
+                    "output_file": "test_cases/extra/output/five_cmds_output_check.txt"
+                }
+            ],
+            "steps": [
+                [
+                    {
+                        "target": "Execute Pipeline",
+                        "type": "run"
+                    }
+                ],
+                [
+                    {
+                        "target": "Check Output File",
+                        "type": "run"
+                    }
+                ]
+            ]
+        },
+        {
+            "type": "sequence",
+            "name": "Input and Output Redirection on a Seven-Command Pipeline",
+            "description": "'<' on the first and '>' on the last command of the seven-command word-count pipeline.",
+            "tests": [
+                {
+                    "name": "Execute Pipeline",
+                    "description": "Run the pipeline(s) in the swish shell",
+                    "command": "./swish",
+                    "prompt": "@>",
+                    "input_file": "test_cases/extra/input/seven_cmds_input_output.txt",
+                    "output_file": "test_cases/extra/output/seven_cmds_input_output_run.txt",
+                    "use_valgrind": true
+                },
+                {
+                    "name": "Check Output File",
+                    "description": "Display contents of redirection target to check its correctness",
+                    "command": "cat out.txt",
+                    "output_file": "test_cases/extra/output/seven_cmds_input_output_check.txt"
+                }
+            ],
+            "steps": [
+                [
+                    {
+                        "target": "Execute Pipeline",
+                        "type": "run"
+                    }
+                ],
+                [
+                    {
+                        "target": "Check Output File",
+                        "type": "run"
+                    }
+                ]
+            ]
+        },
+        {
+            "type": "sequence",
+            "name": "Append Across Two Pipelines",
+            "description": "A four-command pipeline truncates out.txt with '>', then a second four-command pipeline with '<' appends to it with '>>'.",
+            "tests": [
+                {
+                    "name": "Execute Pipeline",
+                    "description": "Run the pipeline(s) in the swish shell",
+                    "command": "./swish",
+                    "prompt": "@>",
+                    "input_file": "test_cases/extra/input/append_two_pipelines.txt",
+                    "output_file": "test_cases/extra/output/append_two_pipelines_run.txt",
+                    "use_valgrind": true
+                },
+                {
+                    "name": "Check Output File",
+                    "description": "Display contents of redirection target to check its correctness",
+                    "command": "cat out.txt",
+                    "output_file": "test_cases/extra/output/append_two_pipelines_check.txt"
+                }
+            ],
+            "steps": [
+                [
+                    {
+                        "target": "Execute Pipeline",
+                        "type": "run"
+                    }
+                ],
+                [
+                    {
+                        "target": "Check Output File",
+                        "type": "run"
+                    }
+                ]
+            ]
+        },
+        {
+            "name": "Command Not Found in First Position",
+            "description": "The first command cannot be exec'd. Its process reports the error and exits, the rest of the pipeline still runs (wc sees EOF and prints 0), and the shell keeps going.",
+            "command": "./swish",
+            "prompt": "@>",
+            "input_file": "test_cases/extra/input/not_found_first.txt",
+            "output_file": "test_cases/extra/output/not_found_first.txt",
+            "use_valgrind": true
+        },
+        {
+            "name": "Command Not Found in Middle Position",
+            "description": "The middle command cannot be exec'd. The last command still runs and prints 0, and the shell keeps going. 'true' writes nothing, so no writer can hit a closed pipe.",
+            "command": "./swish",
+            "prompt": "@>",
+            "input_file": "test_cases/extra/input/not_found_middle.txt",
+            "output_file": "test_cases/extra/output/not_found_middle.txt",
+            "use_valgrind": true
+        },
+        {
+            "name": "Command Not Found in Last Position",
+            "description": "The last command cannot be exec'd; the earlier commands write nothing, so the only output is the exec error, and the shell keeps going.",
+            "command": "./swish",
+            "prompt": "@>",
+            "input_file": "test_cases/extra/input/not_found_last.txt",
+            "output_file": "test_cases/extra/output/not_found_last.txt",
+            "use_valgrind": true
+        },
+        {
+            "name": "Failed Redirections Inside a Pipeline",
+            "description": "'<' from a missing file on the first command and '>' into a missing directory on the last; the provided run_command reports each, the other members still run, and the shell keeps going.",
+            "command": "./swish",
+            "prompt": "@>",
+            "input_file": "test_cases/extra/input/redirect_errors.txt",
+            "output_file": "test_cases/extra/output/redirect_errors.txt",
+            "use_valgrind": true
+        },
+        {
+            "name": "Empty Commands Are Rejected",
+            "description": "Leading '|', trailing '|', two adjacent '|', and a lone '|' each leave a command with no tokens. The shell must not crash; this implementation refuses the line before forking (the message wording is its own, the spec defines none).",
+            "command": "./swish",
+            "prompt": "@>",
+            "input_file": "test_cases/extra/input/empty_cmds.txt",
+            "output_file": "test_cases/extra/output/empty_cmds.txt",
+            "use_valgrind": true
+        },
+        {
+            "name": "Output Larger Than a Pipe Buffer",
+            "description": "About 1.3 MB through one and then three pipes, far beyond the 64 KiB pipe buffer, so writers block until readers drain. Deadlocks if a command is waited for before its reader runs.",
+            "command": "./swish",
+            "prompt": "@>",
+            "input_file": "test_cases/extra/input/big_volume.txt",
+            "output_file": "test_cases/extra/output/big_volume.txt",
+            "use_valgrind": true
+        },
+        {
+            "name": "Sort Reads All Input Before Writing",
+            "description": "sort cannot print until it sees EOF, which only happens once every write end of its input pipe is closed, including the shell's own copy.",
+            "command": "./swish",
+            "prompt": "@>",
+            "input_file": "test_cases/extra/input/sort_volume.txt",
+            "output_file": "test_cases/extra/output/sort_volume.txt",
+            "use_valgrind": true
+        },
+        {
+            "name": "No Pipe Descriptors Leak Into Children",
+            "description": "ls lists its own descriptors and grep counts the pipes among them. First command: 1 (stdout). Middle: 2 (stdin, stdout), also with 3 pipes in the line. Last (listing saved to out.txt): 1 (stdin). Any extra pipe is an unclosed descriptor inherited from the shell.",
+            "command": "./swish",
+            "prompt": "@>",
+            "input_file": "test_cases/extra/input/fd_children.txt",
+            "output_file": "test_cases/extra/output/fd_children.txt",
+            "use_valgrind": true
+        },
+        {
+            "name": "Shell Keeps No Pipe Descriptors After Errors",
+            "description": "Normal, exec-failure, redirect-failure and large pipelines, then a child counts the pipe descriptors it inherited: only its own stdout, so the shell closed every pipe on every path. (No empty-command line here, so only test 13 depends on that message's wording.)",
+            "command": "./swish",
+            "prompt": "@>",
+            "input_file": "test_cases/extra/input/fd_parent_after_errors.txt",
+            "output_file": "test_cases/extra/output/fd_parent_after_errors.txt",
+            "use_valgrind": true
+        },
+        {
+            "name": "Hundreds of Pipelines in One Session",
+            "description": "1100 two-command pipelines in one session. A shell that leaks even one pipe descriptor per pipeline runs out under the 1024 open-file limit (pipe() fails with EMFILE after about 1000); the final check counts the pipes a child inherits.",
+            "command": "./swish",
+            "prompt": "@>",
+            "input_file": "test_cases/extra/input/many_pipelines.txt",
+            "output_file": "test_cases/extra/output/many_pipelines.txt",
+            "use_valgrind": true,
+            "timeout": 120
+        },
+        {
+            "name": "Children That Cannot Start Free Their Memory",
+            "description": "Runs test_cases/extra/resources/child_leaks.sh: swish under valgrind with a log per process, on pipelines with a missing program first, in the middle and last, a missing '<' file and an unwritable '>' path. Each of those 5 children exits while still under valgrind; the script counts the reports (shell + 5) and how many show errors or memory in use at exit. testius's own valgrind check only sees the shell, so a child that exits without freeing passes every other test.",
+            "command": "bash test_cases/extra/resources/child_leaks.sh",
+            "output_file": "test_cases/extra/output/child_leaks.txt",
+            "timeout": 60
+        },
+        {
+            "name": "No Duplicate Prompt When stdout Is a Pipe",
+            "description": "swish's stdout is a pipe, so it is fully buffered and the prompt is still in the buffer at fork() time. Without fflush(stdout) before forking, the child that fails to exec flushes its copy on exit: into the pipe (wc -c prints 3, not 0) and later prompts repeat. testius drives swish through a pty, where stdout is line buffered, so only a test like this one can see it.",
+            "command": "bash -c \"printf 'this_command_does_not_exist | wc -c\\necho x | cat\\nexit\\n' | ./swish 2>/dev/null | cat -A\"",
+            "output_file": "test_cases/extra/output/stdout_pipe_no_duplicates.txt"
+        }
+    ]
+}

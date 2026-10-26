@@ -1,0 +1,4 @@
+@> cat < no_such_file.txt | sort | wc -l
+@> cat /dev/null | sort | cat > no_such_dir/out.txt
+@> echo after | cat
+@> exit

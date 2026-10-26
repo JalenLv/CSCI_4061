@@ -1,0 +1,3 @@
+@> cat /dev/null | sort | this_command_does_not_exist
+@> echo after | cat
+@> exit

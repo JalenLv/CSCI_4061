@@ -1,0 +1,10 @@
+@> ls -l /proc/self/fd | grep -c pipe:
+1
+@> true | ls -l /proc/self/fd | grep -c pipe:
+2
+@> true | true | true | ls -l /proc/self/fd | grep -c pipe:
+2
+@> true | ls -l /proc/self/fd > out.txt
+@> cat out.txt | grep -c pipe:
+1
+@> exit

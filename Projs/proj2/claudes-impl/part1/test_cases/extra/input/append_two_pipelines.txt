@@ -1,0 +1,3 @@
+@> seq 1 3 | sort -rn | paste -sd , | cat > out.txt
+@> cat < test_cases/resources/numbers.txt | sort -n | uniq | wc -l >> out.txt
+@> exit

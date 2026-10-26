@@ -1,0 +1,3 @@
+@> cat < test_cases/resources/numbers.txt | sort -n | uniq | tail -n 3
+@> sort -rn < test_cases/resources/numbers.txt | uniq | tail -n 2 | paste -sd ,
+@> exit

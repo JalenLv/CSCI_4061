@@ -1,0 +1,6 @@
+@> echo x | cat
+@> this_command_does_not_exist | wc -l
+@> cat < no_such_file.txt | wc -l
+@> seq 1 200000 | cat | wc -l
+@> ls -l /proc/self/fd | grep -c pipe:
+@> exit

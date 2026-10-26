@@ -1,0 +1,6 @@
+@> cat test_cases/extra/resources/words.txt | tr -cs A-Za-z \n | tr A-Z a-z | sort | uniq -c | sort -n | tail -n 4
+      4 of
+      5 it
+      6 pipe
+     17 the
+@> exit

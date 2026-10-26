@@ -1,0 +1,9 @@
+-7, 16, -27
+-40, 55, -72
+-7, 16, -27
+-40, 55, -72
+-7, 16, -27
+-40, 55, -72
+processes checked by valgrind: 7
+processes with memory errors: 0
+leak records allocated from hadamard_{pipe,shmem,threads}.c: 0

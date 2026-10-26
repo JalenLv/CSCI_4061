@@ -1,0 +1,2 @@
+@> seq 1 30 | grep 3 | sort -rn | paste -sd , | rev
+@> exit

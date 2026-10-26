@@ -1,0 +1,8 @@
+ValueError: Number of workers must be at least 1
+ValueError: Number of workers must be at least 1
+ValueError: Number of workers must be at least 1
+ValueError: Number of workers must be at least 1
+OverflowError: signed integer is greater than maximum
+OverflowError: signed integer is greater than maximum
+OverflowError: signed integer is greater than maximum
+-42

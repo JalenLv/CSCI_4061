@@ -1,0 +1,2 @@
+@> cat test_cases/resources/numbers.txt | sort -n | uniq | tail -n 5 | sort -rn > out.txt
+@> exit

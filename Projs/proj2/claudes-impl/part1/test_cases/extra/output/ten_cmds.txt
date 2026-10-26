@@ -1,0 +1,3 @@
+@> echo a | sed s/$/b/ | sed s/$/c/ | sed s/$/d/ | sed s/$/e/ | sed s/$/f/ | sed s/$/g/ | sed s/$/h/ | sed s/$/i/ | sed s/$/j/
+abcdefghij
+@> exit

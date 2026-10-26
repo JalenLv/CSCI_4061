@@ -1,0 +1,6 @@
+@> | wc -l
+@> echo hi |
+@> echo hi | | wc -l
+@> |
+@> echo after | cat
+@> exit

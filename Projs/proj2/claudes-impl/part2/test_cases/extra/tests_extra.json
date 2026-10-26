@@ -1,0 +1,186 @@
+{
+    "name": "Parallel Matrix Hadamard Product Extra Tests",
+    "tests": [
+        {
+            "name": "Matrix 0 -- Threads, 1 worker",
+            "description": "Threads on matrix pair 0 (128x128) with 1 worker thread: a single worker thread does all the work. The provided tests do not cover threads at all.",
+            "command": "python3 hadamard_main.py test_cases/resources/mat_00_a.bin test_cases/resources/mat_00_b.bin threads 1",
+            "output_file": "test_cases/output/mat_00.txt"
+        },
+        {
+            "name": "Matrix 1 -- Threads, 2 workers",
+            "description": "Threads on matrix pair 1 (256x256) with 2 worker threads: the work splits evenly in two. The provided tests do not cover threads at all.",
+            "command": "python3 hadamard_main.py test_cases/resources/mat_01_a.bin test_cases/resources/mat_01_b.bin threads 2",
+            "output_file": "test_cases/output/mat_01.txt"
+        },
+        {
+            "name": "Matrix 2 -- Threads, 3 workers",
+            "description": "Threads on matrix pair 2 (512x512) with 3 worker threads: 262144 elements do not divide by 3, so the last thread gets 2 fewer. The provided tests do not cover threads at all.",
+            "command": "python3 hadamard_main.py test_cases/resources/mat_02_a.bin test_cases/resources/mat_02_b.bin threads 3",
+            "output_file": "test_cases/output/mat_02.txt"
+        },
+        {
+            "name": "Matrix 3 -- Threads, 16 workers",
+            "description": "Threads on matrix pair 3 (1024x1024) with 16 worker threads: the 1048576 elements split into 16 equal chunks of 65536. The provided tests do not cover threads at all.",
+            "command": "python3 hadamard_main.py test_cases/resources/mat_03_a.bin test_cases/resources/mat_03_b.bin threads 16",
+            "output_file": "test_cases/output/mat_03.txt"
+        },
+        {
+            "name": "Matrix 4 -- Threads, 5 workers",
+            "description": "Threads on matrix pair 4 (128x256) with 5 worker threads: a non-square matrix with an odd thread count. The provided tests do not cover threads at all.",
+            "command": "python3 hadamard_main.py test_cases/resources/mat_04_a.bin test_cases/resources/mat_04_b.bin threads 5",
+            "output_file": "test_cases/output/mat_04.txt"
+        },
+        {
+            "name": "Matrix 5 -- Threads, 7 workers",
+            "description": "Threads on matrix pair 5 (256x128) with 7 worker threads: the transposed shape of matrix 4 with a prime thread count. The provided tests do not cover threads at all.",
+            "command": "python3 hadamard_main.py test_cases/resources/mat_05_a.bin test_cases/resources/mat_05_b.bin threads 7",
+            "output_file": "test_cases/output/mat_05.txt"
+        },
+        {
+            "name": "Matrix 6 -- Threads, 33 workers",
+            "description": "Threads on matrix pair 6 (256x512) with 33 worker threads: more threads than cores. The provided tests do not cover threads at all.",
+            "command": "python3 hadamard_main.py test_cases/resources/mat_06_a.bin test_cases/resources/mat_06_b.bin threads 33",
+            "output_file": "test_cases/output/mat_06.txt"
+        },
+        {
+            "name": "Matrix 7 -- Threads, 100 workers",
+            "description": "Threads on matrix pair 7 (201x301) with 100 worker threads: an odd element count (60501) with 100 threads; the last thread's chunk is short. The provided tests do not cover threads at all.",
+            "command": "python3 hadamard_main.py test_cases/resources/mat_07_a.bin test_cases/resources/mat_07_b.bin threads 100",
+            "output_file": "test_cases/output/mat_07.txt"
+        },
+        {
+            "name": "Matrix 8 -- Threads, 64 workers",
+            "description": "Threads on matrix pair 8 (301x201) with 64 worker threads: 60501 elements in 64 chunks of 946, the last one 903. The provided tests do not cover threads at all.",
+            "command": "python3 hadamard_main.py test_cases/resources/mat_08_a.bin test_cases/resources/mat_08_b.bin threads 64",
+            "output_file": "test_cases/output/mat_08.txt"
+        },
+        {
+            "name": "Matrix 7 -- Pipe, 7 workers",
+            "description": "Pipe with 7 children on matrix pair 7 (201x301 = 60501 elements, odd). 60501 = 7 x 8643, so the odd sizes still split exactly, and each child sends 16 full 512-element writes plus one of 451.",
+            "command": "python3 hadamard_main.py test_cases/resources/mat_07_a.bin test_cases/resources/mat_07_b.bin pipe 7",
+            "output_file": "test_cases/output/mat_07.txt"
+        },
+        {
+            "name": "Matrix 8 -- Pipe, 100 workers",
+            "description": "Pipe with 100 children all writing into the one shared pipe at once; records from different children must never interleave mid-record.",
+            "command": "python3 hadamard_main.py test_cases/resources/mat_08_a.bin test_cases/resources/mat_08_b.bin pipe 100",
+            "output_file": "test_cases/output/mat_08.txt"
+        },
+        {
+            "name": "Matrix 5 -- Pipe, 64 workers",
+            "description": "Pipe with 64 children on 32768 elements: each child sends exactly 512 elements, one full PIPE_BUF write.",
+            "command": "python3 hadamard_main.py test_cases/resources/mat_05_a.bin test_cases/resources/mat_05_b.bin pipe 64",
+            "output_file": "test_cases/output/mat_05.txt"
+        },
+        {
+            "name": "Matrix 7 -- Shared Mem, 13 workers",
+            "description": "Shared memory with 13 children on 60501 elements (prime worker count, odd element count).",
+            "command": "python3 hadamard_main.py test_cases/resources/mat_07_a.bin test_cases/resources/mat_07_b.bin shmem 13",
+            "output_file": "test_cases/output/mat_07.txt"
+        },
+        {
+            "name": "Matrix 8 -- Shared Mem, 100 workers",
+            "description": "Shared memory with 100 children writing disjoint parts of the one result segment.",
+            "command": "python3 hadamard_main.py test_cases/resources/mat_08_a.bin test_cases/resources/mat_08_b.bin shmem 100",
+            "output_file": "test_cases/output/mat_08.txt"
+        },
+        {
+            "name": "Matrix 4 -- Shared Mem, 64 workers",
+            "description": "Shared memory with 64 children on a non-square 128x256 matrix.",
+            "command": "python3 hadamard_main.py test_cases/resources/mat_04_a.bin test_cases/resources/mat_04_b.bin shmem 64",
+            "output_file": "test_cases/output/mat_04.txt"
+        },
+        {
+            "name": "1x1 Matrix -- All Modes, More Workers than Elements",
+            "description": "Pipe, shmem and threads, each with 7 and then 50 workers, called one after another in one Python process on a generated 1x1 pair: a single element: with 7 or 50 workers, all but worker 0 get an empty range. Workers with nothing to do must still exit cleanly, and every call must print the same product.",
+            "command": "python3 test_cases/extra/resources/hadamard_call.py test_cases/extra/resources/tiny_1x1_a.bin test_cases/extra/resources/tiny_1x1_b.bin pipe:7 pipe:50 shmem:7 shmem:50 threads:7 threads:50",
+            "output_file": "test_cases/extra/output/tiny_1x1_all_modes.txt"
+        },
+        {
+            "name": "1x5 Matrix -- All Modes, More Workers than Elements",
+            "description": "Pipe, shmem and threads, each with 7 and then 50 workers, called one after another in one Python process on a generated 1x5 pair: a single row of 5. Workers with nothing to do must still exit cleanly, and every call must print the same product.",
+            "command": "python3 test_cases/extra/resources/hadamard_call.py test_cases/extra/resources/tiny_1x5_a.bin test_cases/extra/resources/tiny_1x5_b.bin pipe:7 pipe:50 shmem:7 shmem:50 threads:7 threads:50",
+            "output_file": "test_cases/extra/output/tiny_1x5_all_modes.txt"
+        },
+        {
+            "name": "5x1 Matrix -- All Modes, More Workers than Elements",
+            "description": "Pipe, shmem and threads, each with 7 and then 50 workers, called one after another in one Python process on a generated 5x1 pair: a single column of 5, including 0 and products of two negatives. Workers with nothing to do must still exit cleanly, and every call must print the same product.",
+            "command": "python3 test_cases/extra/resources/hadamard_call.py test_cases/extra/resources/tiny_5x1_a.bin test_cases/extra/resources/tiny_5x1_b.bin pipe:7 pipe:50 shmem:7 shmem:50 threads:7 threads:50",
+            "output_file": "test_cases/extra/output/tiny_5x1_all_modes.txt"
+        },
+        {
+            "name": "3x4 Matrix -- All Modes, More Workers than Elements",
+            "description": "Pipe, shmem and threads, each with 7 and then 50 workers, called one after another in one Python process on a generated 3x4 pair: 12 elements: 7 workers get chunks of 2, so the 7th worker gets nothing even with fewer workers than elements. Workers with nothing to do must still exit cleanly, and every call must print the same product.",
+            "command": "python3 test_cases/extra/resources/hadamard_call.py test_cases/extra/resources/tiny_3x4_a.bin test_cases/extra/resources/tiny_3x4_b.bin pipe:7 pipe:50 shmem:7 shmem:50 threads:7 threads:50",
+            "output_file": "test_cases/extra/output/tiny_3x4_all_modes.txt"
+        },
+        {
+            "name": "2x3 Matrix -- All Modes, More Workers than Elements",
+            "description": "Pipe, shmem and threads, each with 7 and then 50 workers, called one after another in one Python process on a generated 2x3 pair: negative operands and results. Workers with nothing to do must still exit cleanly, and every call must print the same product.",
+            "command": "python3 test_cases/extra/resources/hadamard_call.py test_cases/extra/resources/tiny_2x3_a.bin test_cases/extra/resources/tiny_2x3_b.bin pipe:7 pipe:50 shmem:7 shmem:50 threads:7 threads:50",
+            "output_file": "test_cases/extra/output/tiny_2x3_all_modes.txt"
+        },
+        {
+            "name": "Matrix 3 -- Pipe, Byte-Exact Within 3 Seconds",
+            "description": "Pipe with 4 children on the 1024x1024 pair, compared byte for byte with cmp (testius itself ignores whitespace differences) and killed by 'timeout' after 3 seconds. Sending one element per write() instead of 512 makes this take about 1.1 s instead of 0.08 s in the course container.",
+            "command": "bash -c \"timeout 3 python3 hadamard_main.py test_cases/resources/mat_03_a.bin test_cases/resources/mat_03_b.bin pipe 4 | cmp - test_cases/output/mat_03.txt && echo identical\"",
+            "output_file": "test_cases/extra/output/identical.txt"
+        },
+        {
+            "name": "Matrix 3 -- Shared Mem, Byte-Exact",
+            "description": "Shared memory with 9 children on the 1024x1024 pair, compared byte for byte with cmp.",
+            "command": "bash -c \"python3 hadamard_main.py test_cases/resources/mat_03_a.bin test_cases/resources/mat_03_b.bin shmem 9 | cmp - test_cases/output/mat_03.txt && echo identical\"",
+            "output_file": "test_cases/extra/output/identical.txt"
+        },
+        {
+            "name": "Matrix 3 -- Threads, Byte-Exact",
+            "description": "Threads (13 of them) on the 1024x1024 pair, compared byte for byte with cmp.",
+            "command": "bash -c \"python3 hadamard_main.py test_cases/resources/mat_03_a.bin test_cases/resources/mat_03_b.bin threads 13 | cmp - test_cases/output/mat_03.txt && echo identical\"",
+            "output_file": "test_cases/extra/output/identical.txt"
+        },
+        {
+            "name": "No Duplicate Output When stdout Is a Pipe",
+            "description": "Threads, pipe (7 workers), shmem (7 workers), threads on 3x4 in one process, with stdout piped to cat. A pipe makes C's stdout fully buffered, so the first product is still in the buffer when the pipe version forks; without fflush(stdout) before fork(), every child's exit() prints its copy again (75 lines instead of 12). testius runs commands in a pseudo-terminal, where stdout is line buffered, so only a test like this one can see it.",
+            "command": "bash -c \"python3 test_cases/extra/resources/hadamard_call.py test_cases/extra/resources/tiny_3x4_a.bin test_cases/extra/resources/tiny_3x4_b.bin threads:1 pipe:7 shmem:7 threads:1 | cat\"",
+            "output_file": "test_cases/extra/output/stdout_pipe_no_duplicates.txt"
+        },
+        {
+            "name": "Bad Worker Counts Raise ValueError or OverflowError",
+            "description": "Each mode with 0 workers, threads with -1, then each mode with 2**32. 0 and -1 must raise ValueError instead of printing an uncomputed result or trying to start 4294967295 workers (what the starter's 'I' format turns -1 into). 2**32 does not fit the 'i' format, so PyArg_ParseTuple raises OverflowError itself. A following call must still work. -1 is not passed to pipe or shmem here: against an implementation that still parses with 'I', that call forks until the system runs out of processes, so it was checked separately under 'docker run --pids-limit 64'. hadamard_main.py asserts n_workers > 0, so this calls the module directly. The messages are this implementation's own; the spec defines none.",
+            "command": "python3 test_cases/extra/resources/hadamard_call.py test_cases/extra/resources/tiny_1x1_a.bin test_cases/extra/resources/tiny_1x1_b.bin pipe:0 shmem:0 threads:0 threads:-1 pipe:4294967296 shmem:4294967296 threads:4294967296 threads:3",
+            "output_file": "test_cases/extra/output/bad_worker_counts.txt"
+        },
+        {
+            "name": "Missing Matrix File Raises OSError",
+            "description": "Each mode with a missing first file, then with a missing second file (so the first matrix has already been read and must be released). The provided reader prints perror's message to stderr and returns NULL; the caller must raise OSError. A following call must still work.",
+            "command": "python3 test_cases/extra/resources/hadamard_call.py test_cases/extra/resources/tiny_1x1_a.bin test_cases/extra/resources/tiny_1x1_b.bin pipe:2:test_cases/extra/resources/no_such_file_a.bin:test_cases/extra/resources/tiny_1x1_b.bin shmem:2:test_cases/extra/resources/no_such_file_a.bin:test_cases/extra/resources/tiny_1x1_b.bin threads:2:test_cases/extra/resources/no_such_file_a.bin:test_cases/extra/resources/tiny_1x1_b.bin pipe:2:test_cases/extra/resources/tiny_1x1_a.bin:test_cases/extra/resources/no_such_file_b.bin shmem:2:test_cases/extra/resources/tiny_1x1_a.bin:test_cases/extra/resources/no_such_file_b.bin threads:2:test_cases/extra/resources/tiny_1x1_a.bin:test_cases/extra/resources/no_such_file_b.bin threads:3",
+            "output_file": "test_cases/extra/output/missing_file.txt"
+        },
+        {
+            "name": "Truncated Matrix File Raises OSError",
+            "description": "Each mode with a second file whose header says 3x4 but which holds only 5 elements. The provided reader prints its message to stderr and returns NULL; the caller must raise OSError, release the first matrix, and the next call must still work.",
+            "command": "python3 test_cases/extra/resources/hadamard_call.py test_cases/extra/resources/tiny_1x1_a.bin test_cases/extra/resources/tiny_1x1_b.bin pipe:2:test_cases/extra/resources/tiny_3x4_a.bin:test_cases/extra/resources/truncated_3x4.bin shmem:2:test_cases/extra/resources/tiny_3x4_a.bin:test_cases/extra/resources/truncated_3x4.bin threads:2:test_cases/extra/resources/tiny_3x4_a.bin:test_cases/extra/resources/truncated_3x4.bin threads:3",
+            "output_file": "test_cases/extra/output/truncated_file.txt"
+        },
+        {
+            "name": "Mismatched Dimensions Raise ValueError",
+            "description": "Each mode with a 2x3 and a 3x2 matrix (same element count, different shape). The starter's assert() is compiled out because Python builds extensions with -DNDEBUG, so this needs a real check. The spec lets you assume matching dimensions; this is beyond it.",
+            "command": "python3 test_cases/extra/resources/hadamard_call.py test_cases/extra/resources/tiny_1x1_a.bin test_cases/extra/resources/tiny_1x1_b.bin pipe:2:test_cases/extra/resources/tiny_2x3_a.bin:test_cases/extra/resources/tiny_3x2_b.bin shmem:2:test_cases/extra/resources/tiny_2x3_a.bin:test_cases/extra/resources/tiny_3x2_b.bin threads:2:test_cases/extra/resources/tiny_2x3_a.bin:test_cases/extra/resources/tiny_3x2_b.bin threads:3",
+            "output_file": "test_cases/extra/output/mismatched_dims.txt"
+        },
+        {
+            "name": "Nothing Leaked Across Successes and Failures",
+            "description": "13 calls in one process: each mode's success path (with 50 workers on 6 elements) and the failures the spec defines (a missing first file, a missing second file, a truncated second file), then one more success. Afterwards the process must have no extra open file descriptors (a pipe end left open), no extra shared memory mappings (a segment left mapped), and no child process left running or unreaped. Only spec-defined behaviour is used, so a correct implementation without the extra checks of tests 25 and 28 still passes.",
+            "command": "python3 test_cases/extra/resources/hadamard_call.py --check-leaks test_cases/extra/resources/tiny_2x3_a.bin test_cases/extra/resources/tiny_2x3_b.bin pipe:50 pipe:4:test_cases/extra/resources/no_such_file_a.bin:test_cases/extra/resources/tiny_2x3_b.bin pipe:4:test_cases/extra/resources/tiny_2x3_a.bin:test_cases/extra/resources/no_such_file_b.bin pipe:4:test_cases/extra/resources/tiny_2x3_a.bin:test_cases/extra/resources/truncated_3x4.bin shmem:50 shmem:4:test_cases/extra/resources/no_such_file_a.bin:test_cases/extra/resources/tiny_2x3_b.bin shmem:4:test_cases/extra/resources/tiny_2x3_a.bin:test_cases/extra/resources/no_such_file_b.bin shmem:4:test_cases/extra/resources/tiny_2x3_a.bin:test_cases/extra/resources/truncated_3x4.bin threads:50 threads:4:test_cases/extra/resources/no_such_file_a.bin:test_cases/extra/resources/tiny_2x3_b.bin threads:4:test_cases/extra/resources/tiny_2x3_a.bin:test_cases/extra/resources/no_such_file_b.bin threads:4:test_cases/extra/resources/tiny_2x3_a.bin:test_cases/extra/resources/truncated_3x4.bin pipe:3",
+            "output_file": "test_cases/extra/output/no_leaks.txt"
+        },
+        {
+            "name": "No Heap Leaks in Parent, Children or Threads (valgrind)",
+            "description": "Runs pipe, shmem and threads (3 workers each) on the 2x3 pair under valgrind, which also checks every forked child, then reports how many processes were checked (7: the parent plus 3 pipe and 3 shmem children), how many had memory errors, and how many leak records of any kind were allocated from hadamard_pipe.c, hadamard_shmem.c or hadamard_threads.c. A child that forgets to free its inherited copies of A, B or the pid array counts here even though it passes every output test. Logs stay in test_results/valgrind/. Takes about 2.5 s on a 16-core host.",
+            "command": "bash test_cases/extra/resources/valgrind_leaks.sh",
+            "output_file": "test_cases/extra/output/valgrind_leaks.txt",
+            "timeout": 30
+        }
+    ]
+}

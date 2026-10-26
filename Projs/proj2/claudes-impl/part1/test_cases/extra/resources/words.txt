@@ -1,0 +1,8 @@
+The shell reads a line, splits it into words, and looks for the pipes.
+Each pipe joins the output of one program to the input of the next one.
+The parent makes every pipe first, then forks the children from the last to the first.
+A child copies the pipe ends it needs onto its standard input and output,
+closes every pipe descriptor it inherited, and then runs the program.
+The parent closes all of its pipe ends before it waits for the children,
+because a reader only sees the end of it once every writer is gone.
+If the parent kept any pipe write end open, the last program in the line would wait forever.

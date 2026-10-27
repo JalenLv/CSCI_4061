@@ -1,0 +1,14 @@
+# Build output
+*.o
+!part1/swish_funcs_provided_*.o
+part1/swish
+part2/build/
+part2/*.so
+part2/*.egg-info/
+__pycache__/
+
+# Test output
+test_results/
+part1/out.txt
+
+proj2-code.zip

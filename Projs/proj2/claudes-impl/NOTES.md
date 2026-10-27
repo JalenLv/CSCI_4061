@@ -115,7 +115,7 @@ wording difference, not a bug (a crash still is):
 
 | Test | Expects | Spec says |
 | --- | --- | --- |
-| Part 1, extra 13 (empty command such as `a \| \| b`) | `Error: Empty command in pipeline` on stderr | nothing; the provided `run_command()` segfaults on an empty command |
+| Part 1, extra 13 (empty command such as `a \| \| b`) | `Error: Empty command` on stderr (the owner's wording) | nothing; the provided `run_command()` segfaults on an empty command |
 | Part 2, extra 25 (`n_workers` of 0 and −1; `2**32` expects Python's own `OverflowError`) | `ValueError: Number of workers must be at least 1` | nothing; `hadamard_main.py` asserts `n_workers > 0` before calling |
 | Part 2, extra 28 (mismatched dimensions) | `ValueError: Matrix dimensions do not match` | may be assumed away; the starter's `assert` is compiled out by `-DNDEBUG` |
 | Part 2, extra 28's mismatch check and 25's `−1` need code the starter scaffold doesn't have | see the next paragraph | |

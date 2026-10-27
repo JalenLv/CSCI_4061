@@ -100,7 +100,7 @@ int run_piped_command(strvec_t *tokens, int *pipes, int n_pipe_fds, int in_idx, 
 
 int run_pipelined_commands(strvec_t *tokens) {
     if (has_empty_command(tokens)) {
-        fprintf(stderr, "Error: Empty command in pipeline\n");
+        fprintf(stderr, "Error: Empty command\n");
         return -1;
     }
 

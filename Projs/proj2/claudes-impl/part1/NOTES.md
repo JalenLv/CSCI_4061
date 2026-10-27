@@ -45,9 +45,8 @@ scratch directory, copy this directory's `test_cases/extra/` to
 there. The copy must include `swish_funcs_provided_x86_64.o` (the starter's
 prebuilt object, which the link step needs; your `code/part1/` was missing it
 until 10-25). Test 13 is the only test that checks the
-empty-command message, which is my own wording (the spec defines none). A copy
-that changes only that message passes the other 19, so a different message from
-your code is a wording difference, not a bug.
+empty-command message. The spec defines none, so it uses your wording
+(`Error: Empty command`); any other wording is a difference, not a bug.
 
 **Valgrind.** testius only fails a test when the *shell* exits with valgrind's
 error code. A forked child that never exec's (command not found, failed
@@ -100,7 +99,7 @@ must close the ones it doesn't use.
 
 | Failure | Reported as | Cleanup |
 | --- | --- | --- |
-| Empty command | `Error: Empty command in pipeline` (stderr) | Nothing created yet |
+| Empty command | `Error: Empty command` (stderr) | Nothing created yet |
 | `fflush(stdout)` | `fflush: ...` | Nothing created yet |
 | `malloc` (pipes, pids) | `malloc: ...` | Frees whichever array exists |
 | `pipe()` number *k* | `pipe: ...` | Closes the 2*k* ends already made, frees both arrays |
@@ -142,7 +141,7 @@ testius's options, stdin and stdout redirected to files:
    check (variant V8 below), the provided `run_command()` receives an empty
    vector and the child segfaults inside it. Valgrind logs `SIGSEGV` in each
    such child, and `| wc -l` prints `0`. The shell itself survives, because
-   only the child dies. The message wording is mine.
+   only the child dies. The message is the owner's wording; the spec defines none.
 2. **`fflush(stdout)` before forking.** The prompt is printed without a newline.
    When stdout is not a terminal it is fully buffered, so `@> ` is still in the
    buffer at `fork()` time and every child inherits a copy. A child that execs

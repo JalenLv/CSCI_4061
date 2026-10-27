@@ -1,11 +1,11 @@
 @> | wc -l
-Error: Empty command in pipeline
+Error: Empty command
 @> echo hi |
-Error: Empty command in pipeline
+Error: Empty command
 @> echo hi | | wc -l
-Error: Empty command in pipeline
+Error: Empty command
 @> |
-Error: Empty command in pipeline
+Error: Empty command
 @> echo after | cat
 after
 @> exit

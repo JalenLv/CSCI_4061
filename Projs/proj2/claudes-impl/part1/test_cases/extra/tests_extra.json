@@ -192,7 +192,7 @@
         },
         {
             "name": "Empty Commands Are Rejected",
-            "description": "Leading '|', trailing '|', two adjacent '|', and a lone '|' each leave a command with no tokens. The shell must not crash; this implementation refuses the line before forking (the message wording is its own, the spec defines none).",
+            "description": "Leading '|', trailing '|', two adjacent '|', and a lone '|' each leave a command with no tokens. The shell must not crash; this implementation refuses the line before forking (the spec defines no message; this uses the owner's wording).",
             "command": "./swish",
             "prompt": "@>",
             "input_file": "test_cases/extra/input/empty_cmds.txt",

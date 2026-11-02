@@ -67,7 +67,7 @@ QUIZ Questions 'threads_main' Observations
   to execute?
     - ( ) 0 Iterations
     - ( ) 1 Iteration
-    - ( ) 2 Iterations
+    - (X) 2 Iterations
     - ( ) 3 Iterations
 
   Each consumer thread is given a unique index, and each consumer prints its
@@ -76,11 +76,11 @@ QUIZ Questions 'threads_main' Observations
   you observe about the order in which the consumer threads run?
     - ( ) Consumers always take turns in the order in which they were created.
     - ( ) Consumers always take turns in the reverse order of their creation.
-    - ( ) Consumers don't take turns in a consistent order.
+    - (X) Consumers don't take turns in a consistent order.
 
   What do you observe about the order of the messages printed to the screen when
   you execute the 'threads_main' program multiple times?
-    - ( ) Messages are always printed in alphabetical order.
+    - (X) Messages are always printed in alphabetical order.
     - ( ) Messages are always printed in reverse alphabetical order.
     - ( ) Messages are not printed in a consistent order.
 

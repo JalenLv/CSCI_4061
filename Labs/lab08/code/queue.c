@@ -9,13 +9,17 @@ int queue_init(queue_t *queue) {
     queue->size = 0;
 
     // TODO Initialize synchronization primitives here
+    pthread_mutex_init(&queue->lock, NULL);
+    pthread_cond_init(&queue->queue_full, NULL);
+    pthread_cond_init(&queue->queue_empty, NULL);
+
     return 0;
 }
 
 int queue_add(queue_t *queue, const char *item) {
     // TODO Add synchronization logic before and after queue
     // modification code below as needed
-
+    pthread_mutex_lock(&queue->lock);
     if (queue->head == NULL) {
         if ((queue->head = malloc(sizeof(node_t))) == NULL) {
             fprintf(stderr, "malloc() failed\n");
@@ -26,7 +30,12 @@ int queue_add(queue_t *queue, const char *item) {
         queue->head->message[BUFLEN - 1] = '\0';
         queue->head->next = NULL;
         queue->size = 1;
+
+        pthread_cond_signal(&queue->queue_empty);
     } else {
+        while (queue->size >= MAX_QUEUE_SIZE)
+            pthread_cond_wait(&queue->queue_full, &queue->lock);
+
         node_t *current = queue->head;
         while (current->next != NULL) {
             current = current->next;
@@ -41,6 +50,7 @@ int queue_add(queue_t *queue, const char *item) {
         current->next->next = NULL;
         queue->size++;
     }
+    pthread_mutex_unlock(&queue->lock);
 
     return 0;
 }
@@ -48,12 +58,18 @@ int queue_add(queue_t *queue, const char *item) {
 int queue_remove(queue_t *queue, char *item_dest) {
     // TODO Add synchronization logic before and after queue
     // modification code below as needed
+    pthread_mutex_lock(&queue->lock);
+    while (queue->size <= 0)
+        pthread_cond_wait(&queue->queue_empty, &queue->lock);
 
     strcpy(item_dest, queue->head->message);
     node_t *new_head = queue->head->next;
     free(queue->head);
     queue->head = new_head;
-    queue->size--;
+    if (queue->size-- == MAX_QUEUE_SIZE)
+        pthread_cond_signal(&queue->queue_full);
+
+    pthread_mutex_unlock(&queue->lock);
 
     return 0;
 }

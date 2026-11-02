@@ -1,0 +1,19 @@
+{
+    "name": "Lab 08",
+    "tests": [
+        {
+            "name": "Quiz - QUESTIONS.txt",
+            "description": "Check if the answers in QUESTIONS.txt are correct. This file must be edited so that the correct ( ) choices are replaced with (X) and no other changes are made to the file.",
+            "command": "socrates QUESTIONS.txt -c test_cases/resources/quiz_sum.json -a",
+            "output_file": "test_cases/output/quiz.txt",
+            "points": 0.5
+        },
+        {
+            "name": "Code - threads_main",
+            "description": "Checks the threads_main program for correct output. 'sed' is used to elide consumer indexes and make the test insensitive to the specific order in which consumer threads run.",
+            "input_file": "test_cases/input/threads_main.txt",
+            "output_file": "test_cases/output/threads_main.txt",
+            "points": 0.5
+        }
+    ]
+}

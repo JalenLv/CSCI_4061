@@ -1,0 +1,2 @@
+$ $(setarch -R true 2>/dev/null && echo setarch -R) ./threads_main | sed 's/^Consumer [0-9]/Consumer x/'
+$ exit

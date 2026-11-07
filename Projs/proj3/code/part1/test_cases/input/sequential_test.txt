@@ -1,0 +1,29 @@
+$ (./http_server server_files $PORT1 &)
+$ rm -rf downloaded_files
+$ mkdir downloaded_files
+$ sleep 2
+$ curl -s -S http://localhost:$PORT1/quote.txt > downloaded_files/quote.txt
+$ diff -q server_files/quote.txt downloaded_files/quote.txt
+$ curl -s -S http://localhost:$PORT1/headers.html > downloaded_files/headers.html
+$ diff -q server_files/headers.html downloaded_files/headers.html
+$ curl -s -S http://localhost:$PORT1/index.html > downloaded_files/index.html
+$ diff -q server_files/index.html downloaded_files/index.html
+$ curl -s -S http://localhost:$PORT1/courses.txt > downloaded_files/courses.txt
+$ diff -q server_files/courses.txt downloaded_files/courses.txt
+$ curl -s -S http://localhost:$PORT1/mt2_practice.pdf > downloaded_files/mt2_practice.pdf
+$ diff -q server_files/mt2_practice.pdf downloaded_files/mt2_practice.pdf
+$ curl -s -S http://localhost:$PORT1/gatsby.txt > downloaded_files/gatsby.txt
+$ diff -q server_files/gatsby.txt downloaded_files/gatsby.txt
+$ curl -s -S http://localhost:$PORT1/africa.jpg > downloaded_files/africa.jpg
+$ diff -q server_files/africa.jpg downloaded_files/africa.jpg
+$ curl -s -S http://localhost:$PORT1/ocelot.jpg > downloaded_files/ocelot.jpg
+$ diff -q server_files/ocelot.jpg downloaded_files/ocelot.jpg
+$ curl -s -S http://localhost:$PORT1/hard_drive.png > downloaded_files/hard_drive.png
+$ diff -q server_files/hard_drive.png downloaded_files/hard_drive.png
+$ curl -s -S http://localhost:$PORT1/Lec01.pdf > downloaded_files/Lec01.pdf
+$ diff -q server_files/Lec01.pdf downloaded_files/Lec01.pdf
+$ curl -s -S http://localhost:$PORT1/rain.mp3 > downloaded_files/rain.mp3
+$ diff -q server_files/rain.mp3 downloaded_files/rain.mp3
+$ curl -s -S -w "Response Status Code: %{http_code}\n" http://localhost:$PORT1/affordable_gpu.txt
+$ pkill -INT http_server
+$ exit

@@ -1,0 +1,6 @@
+$ bash test_cases/extra/resources/sigint_idle.sh "python3 http_server.py" 9
+server exited within 3 s of SIGINT
+server exit status: 0
+server printed nothing
+$ exit
+exit

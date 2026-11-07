@@ -1,0 +1,2 @@
+$ bash test_cases/extra/resources/headers.sh ./http_server 1
+$ exit

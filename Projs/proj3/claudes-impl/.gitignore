@@ -1,0 +1,12 @@
+# Build output
+*.o
+part1/http_server
+part1/http_server_tsan
+*/concurrent_open.so
+__pycache__/
+
+# Test output
+test_results/
+downloaded_files/
+
+proj3-code.zip

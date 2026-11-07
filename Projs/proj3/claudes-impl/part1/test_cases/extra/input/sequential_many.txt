@@ -1,0 +1,2 @@
+$ bash test_cases/extra/resources/sequential_many.sh ./http_server 15
+$ exit

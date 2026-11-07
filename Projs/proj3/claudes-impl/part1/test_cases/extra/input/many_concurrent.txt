@@ -1,0 +1,2 @@
+$ bash test_cases/extra/resources/many_concurrent.sh ./http_server 8
+$ exit

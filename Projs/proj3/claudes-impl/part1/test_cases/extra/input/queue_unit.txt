@@ -1,0 +1,2 @@
+$ bash test_cases/extra/resources/queue_unit.sh
+$ exit

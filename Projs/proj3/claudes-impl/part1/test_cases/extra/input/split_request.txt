@@ -1,0 +1,2 @@
+$ bash test_cases/extra/resources/split_request.sh ./http_server 3
+$ exit

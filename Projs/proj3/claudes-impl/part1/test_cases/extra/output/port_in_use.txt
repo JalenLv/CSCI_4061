@@ -1,0 +1,9 @@
+$ bash test_cases/extra/resources/port_in_use.sh ./http_server 16
+second server exited with a nonzero status
+its output mentions 'Address already in use'
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+server exited within 5 s of SIGINT
+server exit status: 0
+server printed nothing
+$ exit
+exit

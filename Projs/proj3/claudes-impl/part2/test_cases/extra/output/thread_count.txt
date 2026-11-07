@@ -1,0 +1,11 @@
+$ bash test_cases/extra/resources/thread_count.sh "python3 http_server.py" 6
+threads before any client: 6
+100 requests: 92 correct 200s, 8 correct 404s
+threads after 100 sequential requests: 6
+20 concurrent downloads, 20 identical to the originals
+threads after 20 concurrent requests: 6
+server exited within 5 s of SIGINT
+server exit status: 0
+server printed nothing
+$ exit
+exit

@@ -1,0 +1,2 @@
+$ bash test_cases/extra/resources/preload_rounds.sh "python3 http_server.py" 8
+$ exit

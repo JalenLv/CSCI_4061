@@ -1,0 +1,22 @@
+$ bash test_cases/extra/resources/queue_unit.sh
+PASS: init returns 0
+PASS: elements come out in FIFO order, across wraparound
+PASS: free returns 0 after shutdown
+PASS: enqueue on a full queue blocks
+PASS: a dequeue unblocks it, and it returns 0
+PASS: the blocked element is added after the others
+PASS: dequeue on an empty queue blocks
+PASS: an enqueue unblocks it, and it returns that element
+PASS: shutdown wakes all 3 blocked dequeuers, each gets -1
+PASS: shutdown wakes both blocked enqueuers, each gets -1
+PASS: after shutdown, dequeue still returns the queued elements in order
+PASS: then dequeue returns -1 without blocking
+PASS: enqueue after shutdown returns -1
+PASS: and adds nothing
+PASS: 4 producers, 4 consumers: each of 80000 elements dequeued exactly once
+PASS: 1 producer, 8 consumers, mostly waiting: each element dequeued exactly once
+0 failed
+exit status: 0
+ThreadSanitizer warnings: 0
+$ exit
+exit

@@ -1,0 +1,2 @@
+$ bash test_cases/extra/resources/tsan_server.sh ./http_server_tsan 18
+$ exit

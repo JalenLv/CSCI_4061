@@ -1,0 +1,11 @@
+$ bash test_cases/extra/resources/not_found.sh ./http_server 2
+GET /affordable_gpu.txt: HTTP/1.0 404 Not Found | Content-Length: 0 | body 0 bytes | closed
+GET /no_such_dir/quote.txt: HTTP/1.0 404 Not Found | Content-Length: 0 | body 0 bytes | closed
+GET /quote.txt/more: HTTP/1.0 404 Not Found | Content-Length: 0 | body 0 bytes | closed
+GET /README: HTTP/1.0 404 Not Found | Content-Length: 0 | body 0 bytes | closed
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+server exited within 5 s of SIGINT
+server exit status: 0
+server printed nothing
+$ exit
+exit

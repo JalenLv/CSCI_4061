@@ -1,0 +1,2 @@
+$ bash test_cases/extra/resources/valgrind.sh ./http_server 17
+$ exit

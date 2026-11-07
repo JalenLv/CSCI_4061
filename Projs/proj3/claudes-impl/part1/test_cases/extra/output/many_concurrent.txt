@@ -1,0 +1,7 @@
+$ bash test_cases/extra/resources/many_concurrent.sh ./http_server 8
+40 concurrent downloads, 40 identical to the originals
+server exited within 5 s of SIGINT
+server exit status: 0
+server printed nothing
+$ exit
+exit

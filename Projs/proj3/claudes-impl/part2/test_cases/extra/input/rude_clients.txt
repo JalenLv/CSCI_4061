@@ -1,0 +1,2 @@
+$ bash test_cases/extra/resources/rude_clients.sh "python3 http_server.py" 12
+$ exit

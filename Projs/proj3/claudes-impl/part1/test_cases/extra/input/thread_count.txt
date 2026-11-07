@@ -1,0 +1,2 @@
+$ bash test_cases/extra/resources/thread_count.sh ./http_server 7
+$ exit

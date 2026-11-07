@@ -1,0 +1,2 @@
+$ python3 http_server.py server_files $PORT2
+$ exit

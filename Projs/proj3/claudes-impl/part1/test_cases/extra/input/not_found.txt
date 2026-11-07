@@ -1,0 +1,2 @@
+$ bash test_cases/extra/resources/not_found.sh ./http_server 2
+$ exit

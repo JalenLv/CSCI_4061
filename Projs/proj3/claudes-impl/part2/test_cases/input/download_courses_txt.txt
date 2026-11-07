@@ -1,0 +1,2 @@
+$ curl -s -S http://localhost:$PORT2/courses.txt > downloaded_files/courses.txt
+$ exit

@@ -1,0 +1,2 @@
+$ bash test_cases/extra/resources/client_aborts.sh ./http_server 14
+$ exit

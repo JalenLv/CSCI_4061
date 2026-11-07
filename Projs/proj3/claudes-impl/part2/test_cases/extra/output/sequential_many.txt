@@ -1,0 +1,8 @@
+$ bash test_cases/extra/resources/sequential_many.sh "python3 http_server.py" 14
+1500 requests: 1375 correct 200s, 125 correct 404s
+open descriptors after the requests: 0 more than before
+server exited within 5 s of SIGINT
+server exit status: 0
+server printed nothing
+$ exit
+exit

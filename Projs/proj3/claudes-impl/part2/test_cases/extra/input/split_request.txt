@@ -1,0 +1,2 @@
+$ bash test_cases/extra/resources/split_request.sh "python3 http_server.py" 3
+$ exit

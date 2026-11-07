@@ -1,0 +1,2 @@
+$ bash test_cases/extra/resources/shutdown_drain.sh ./http_server 11
+$ exit

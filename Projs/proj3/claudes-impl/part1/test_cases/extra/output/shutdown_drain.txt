@@ -1,0 +1,14 @@
+$ bash test_cases/extra/resources/shutdown_drain.sh ./http_server 11
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+GET /index.html: HTTP/1.0 200 OK | Content-Type: text/html | Content-Length: 359 | body 359 bytes matching index.html | closed
+GET /courses.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 2655 | body 2655 bytes matching courses.txt | closed
+GET /gatsby.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 299452 | body 299452 bytes matching gatsby.txt | closed
+server exited within 5 s of SIGINT
+server exit status: 0
+server printed nothing
+$ exit
+exit

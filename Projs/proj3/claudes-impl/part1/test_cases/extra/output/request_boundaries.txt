@@ -1,0 +1,20 @@
+$ bash test_cases/extra/resources/request_boundaries.sh ./http_server 4
+end of request at byte 510:
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+end of request at byte 511:
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+end of request at byte 1022:
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+end of request at byte 4094:
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+end of request at byte 4095:
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+end of request at byte 8190:
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+end of request at byte 65534:
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+server exited within 5 s of SIGINT
+server exit status: 0
+server printed nothing
+$ exit
+exit

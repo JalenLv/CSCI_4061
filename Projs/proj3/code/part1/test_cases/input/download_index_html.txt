@@ -1,0 +1,2 @@
+$ curl -s -S http://localhost:$PORT2/index.html > downloaded_files/index.html
+$ exit

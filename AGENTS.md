@@ -21,7 +21,7 @@ the owner writes themselves. That shapes most of the rules below.
 
 ```
 .devcontainer/             Course Docker image
-Labs/labNN/labNN.pdf       Lab slides
+Labs/labNN/*.pdf           Lab slides
 Labs/labNN/code/           Unpacked starter zip, completed in place
 Projs/projN/desc/          Spec, converted from the Canvas page to projectN.md, plus figures
 Projs/projN/quiz/          Project quiz, converted from Canvas to QUESTIONS.md, plus the agent's answered copy
@@ -68,6 +68,8 @@ under `test_cases/`.
   labs do; check the Makefile. The runner itself takes `-v -n N`.
 - Input files can contain `^C`, `^Z` and `^D` lines; testius sends them as
   real keystrokes through a pty.
+- Don't put a literal `$` mid-line in an input file: testius takes output
+  ending in `$` as the prompt and can send the next line early.
 - `{{…}}` in an input or expected-output file holds a shell command, and
   testius replaces it with the command's stripped stdout before the test runs
   (`{{pwd}}`, `{{echo $HOME}}`, `{{wc test_cases/resources/nums.txt}}`). One
@@ -117,7 +119,7 @@ Each lab has a QUIZ and a CODE part; `make zip` builds the Gradescope upload.
   `- [ ]` per choice (the owner marks `[X]`), header like the spec's.
   The agent's `QUESTIONS-answered.md` adds one `[X]` and a `> **Why:**` citing
   the source per question.
-- **Grading** (both specs so far; check each new one): quiz 10%, automated
+- **Grading** (every spec so far; check each new one): quiz 10%, automated
   tests 40% (public plus hidden), oral exam on the submitted code 40%, manual
   error-checking review 10%.
 - **What gets graded:** only the files marked `EDIT` in the spec's
@@ -132,6 +134,7 @@ Each lab has a QUIZ and a CODE part; `make zip` builds the Gradescope upload.
 |---|---|---|---|
 | proj1 | `swish`, a job-control shell: `cd`/`pwd`, `fork`/`exec`, `<` `>` `>>`, process groups, `fg`/`bg`/`wait-for`/`wait-all` | Fri 10/02 11:59pm (Gradescope) | `Projs/proj1/claudes-impl/NOTES.md` |
 | proj2 | `part1/`: `\|` pipelines for `swish` (`pipe()`, `dup2()`, a provided `run_command()`). `part2/`: parallel Hadamard product three ways (pipe, shared memory, threads) as a Python C extension | Fri 10/30 11:59pm (Gradescope); quiz Fri 10/16 | `Projs/proj2/claudes-impl/NOTES.md` |
+| proj3 | `part1/`: multi-threaded HTTP server in C (sockets, a thread pool over a bounded queue, `SIGINT` shutdown, TSAN). `part2/`: the same in Python | Fri 11/20 11:59pm (Gradescope); quiz Fri 11/06 | `Projs/proj3/claudes-impl/NOTES.md` |
 
 ## Weekly quizzes
 
@@ -160,3 +163,5 @@ lectures by the date on each title slide.
   a reference's extra tests expect the reference's wording. Different wording
   in the owner's code is a wording difference, not a bug; to align them, change
   the reference, not the owner's code. A crash is still a bug.
+- **Ports linger.** After a server closes connections, its port can't be bound
+  for about a minute; give each server run its own port.

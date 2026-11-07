@@ -1,0 +1,2 @@
+$ bash test_cases/extra/resources/rude_clients.sh ./http_server 13
+$ exit

@@ -1,0 +1,7 @@
+$ bash test_cases/extra/resources/preload_rounds.sh ./http_server 9
+25 concurrent downloads, 25 identical to the originals
+server exited within 5 s of SIGINT
+server exit status: 0
+server printed nothing
+$ exit
+exit

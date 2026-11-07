@@ -1,0 +1,2 @@
+$ bash test_cases/extra/resources/sigint_idle.sh ./http_server 10
+$ exit

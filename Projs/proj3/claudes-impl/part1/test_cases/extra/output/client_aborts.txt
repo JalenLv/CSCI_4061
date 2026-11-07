@@ -1,0 +1,15 @@
+$ bash test_cases/extra/resources/client_aborts.sh ./http_server 14
+GET /big.txt: read 65536 bytes, then closed
+GET /big.txt: read 65536 bytes, then closed
+GET /big.txt: read 65536 bytes, then closed
+GET /big.txt: read 65536 bytes, then closed
+GET /big.txt: read 65536 bytes, then closed
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+GET /index.html: HTTP/1.0 200 OK | Content-Type: text/html | Content-Length: 359 | body 359 bytes matching index.html | closed
+GET /courses.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 2655 | body 2655 bytes matching courses.txt | closed
+GET /gatsby.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 299452 | body 299452 bytes matching gatsby.txt | closed
+GET /ocelot.jpg: HTTP/1.0 200 OK | Content-Type: image/jpeg | Content-Length: 1186359 | body 1186359 bytes matching ocelot.jpg | closed
+server exited within 5 s of SIGINT
+server exit status: 0
+$ exit
+exit

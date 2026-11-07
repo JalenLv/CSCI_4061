@@ -1,0 +1,9 @@
+$ bash test_cases/extra/resources/rude_clients.sh ./http_server 13
+client 1: connected and closed without sending anything
+client 2: sent half a request and closed
+client 3: sent a malformed request line, then the connection was closed
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+server exited within 5 s of SIGINT
+server exit status: 0
+$ exit
+exit

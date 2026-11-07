@@ -1,0 +1,110 @@
+{
+    "name": "Project 3 Part 2 Extra Tests",
+    "tests": [
+        {
+            "name": "Headers and Body for Every File",
+            "description": "Requests each of the 11 files over a raw socket. The expected types are the starter's MIME_TYPES table, including its text/jpeg for .jpg. Checks the status line, the Content-Type and Content-Length headers, CRLF line endings, a body identical to the file, and that the server closes the connection.",
+            "input_file": "test_cases/extra/input/headers.txt",
+            "output_file": "test_cases/extra/output/headers.txt",
+            "timeout": 20
+        },
+        {
+            "name": "404 for Missing Resources",
+            "description": "A missing file, a missing directory, a path below a regular file (stat fails with ENOTDIR) and a name with no extension all get 'HTTP/1.0 404 Not Found' with Content-Length 0 and no body. The server keeps serving.",
+            "input_file": "test_cases/extra/input/not_found.txt",
+            "output_file": "test_cases/extra/output/not_found.txt",
+            "timeout": 10
+        },
+        {
+            "name": "Request Sent in Small Pieces",
+            "description": "The client sends its request one byte at a time, then seven bytes at a time with 50 ms pauses. A server that answers after a single read() sees only part of the request line.",
+            "input_file": "test_cases/extra/input/split_request.txt",
+            "output_file": "test_cases/extra/output/split_request.txt",
+            "timeout": 10
+        },
+        {
+            "name": "End of Request Straddles a Read Boundary",
+            "description": "Requests padded with a long header so the closing CRLF CRLF starts at byte 510, 511, 1022, 4094, 4095 or 8190 (split across two reads of 512, 1024, 4096 or 8192 bytes), and one with 64 KiB of headers. The server must consume the whole request and find the marker across the split.",
+            "input_file": "test_cases/extra/input/request_boundaries.txt",
+            "output_file": "test_cases/extra/output/request_boundaries.txt",
+            "timeout": 10
+        },
+        {
+            "name": "Connection Queue Unit Tests",
+            "description": "Runs resources/queue_test.py against connection_queue.py: FIFO order, enqueue blocking on a full queue and dequeue on an empty one, shut_down waking every blocked thread with ShutDownException, dequeues draining the queue after shut_down (the same rule as Part 1), enqueue failing after shut_down, and two stress runs: 4 producers with 4 consumers, and 1 producer with 8 mostly waiting consumers, where a woken consumer often finds its element already taken (while, not if, around wait()). A missing or repeated element, or a ShutDownException or other exception before shut_down (a worker would quit), fails it.",
+            "input_file": "test_cases/extra/input/queue_unit.txt",
+            "output_file": "test_cases/extra/output/queue_unit.txt",
+            "timeout": 30
+        },
+        {
+            "name": "Fixed Pool of Five Worker Threads",
+            "description": "Counts the server's threads in /proc: the main thread plus 5 workers before any client, after 100 sequential requests and after 20 concurrent ones. A thread per connection, or workers that die, change the count.",
+            "input_file": "test_cases/extra/input/thread_count.txt",
+            "output_file": "test_cases/extra/output/thread_count.txt",
+            "timeout": 20
+        },
+        {
+            "name": "Forty Concurrent Clients",
+            "description": "40 curl downloads at once: 5 in the workers, 5 in the queue, and the rest waiting in the listen backlog while the main thread blocks on the full queue. All 40 files arrive intact.",
+            "input_file": "test_cases/extra/input/many_concurrent.txt",
+            "output_file": "test_cases/extra/output/many_concurrent.txt",
+            "timeout": 30
+        },
+        {
+            "name": "Five Rounds Through the concurrent_open Barrier",
+            "description": "Like provided test 2 (LD_PRELOAD=./concurrent_open.so, which also intercepts CPython's open()) but with 25 requests, so every one of five rounds needs all 5 workers inside open() at the same time.",
+            "input_file": "test_cases/extra/input/preload_rounds.txt",
+            "output_file": "test_cases/extra/output/preload_rounds.txt",
+            "timeout": 20
+        },
+        {
+            "name": "SIGINT With No Clients",
+            "description": "SIGINT with idle workers. With accept()'s 1 s timeout the server notices within about a second, and exits within 3 s with status 0 and no output.",
+            "input_file": "test_cases/extra/input/sigint_idle.txt",
+            "output_file": "test_cases/extra/output/sigint_idle.txt",
+            "timeout": 10
+        },
+        {
+            "name": "SIGINT Drains the Queue",
+            "description": "Five slow clients occupy every worker (they send their request after 2.5 s), three more wait in the queue, then SIGINT. The spec lets dequeues continue until the queue is empty, so all 8 clients get complete responses before the server exits with status 0.",
+            "input_file": "test_cases/extra/input/shutdown_drain.txt",
+            "output_file": "test_cases/extra/output/shutdown_drain.txt",
+            "timeout": 15
+        },
+        {
+            "name": "SIGINT While the Main Thread Waits on a Full Queue",
+            "description": "Five slow clients occupy the workers, five more fill the queue, and an eleventh leaves the main thread blocked in enqueue when SIGINT arrives. Nothing deadlocks: all 11 clients are served once the slow ones send their requests, and the server exits with status 0.",
+            "input_file": "test_cases/extra/input/shutdown_full_queue.txt",
+            "output_file": "test_cases/extra/output/shutdown_full_queue.txt",
+            "timeout": 15
+        },
+        {
+            "name": "Clients That Misbehave",
+            "description": "One client connects and closes, one sends half a request and closes, one sends a malformed request line. The server may report them (its output isn't checked here) but must close those connections, keep serving and exit cleanly.",
+            "input_file": "test_cases/extra/input/rude_clients.txt",
+            "output_file": "test_cases/extra/output/rude_clients.txt",
+            "timeout": 10
+        },
+        {
+            "name": "Clients That Abandon a Download",
+            "description": "Under LD_PRELOAD=./concurrent_open.so, five clients abandon a 32 MiB download after 64 KiB, so sendfile() raises BrokenPipeError or ConnectionResetError in every worker. A worker that doesn't catch it dies; five concurrent requests afterwards need all 5 workers inside open() at once, so they hang unless every worker survived. Server output isn't checked.",
+            "input_file": "test_cases/extra/input/client_aborts.txt",
+            "output_file": "test_cases/extra/output/client_aborts.txt",
+            "timeout": 30
+        },
+        {
+            "name": "1500 Sequential Requests",
+            "description": "1500 requests (1375 files, 125 missing) against the 1024-descriptor limit: a socket or file kept open per request makes accept() or open() fail partway. The number of open descriptors afterwards must equal the number before.",
+            "input_file": "test_cases/extra/input/sequential_many.txt",
+            "output_file": "test_cases/extra/output/sequential_many.txt",
+            "timeout": 60
+        },
+        {
+            "name": "Port Already in Use",
+            "description": "A second server on the same port fails to bind: it exits promptly with a nonzero status, and its message (or traceback) says 'Address already in use'. The first server keeps working.",
+            "input_file": "test_cases/extra/input/port_in_use.txt",
+            "output_file": "test_cases/extra/output/port_in_use.txt",
+            "timeout": 15
+        }
+    ]
+}

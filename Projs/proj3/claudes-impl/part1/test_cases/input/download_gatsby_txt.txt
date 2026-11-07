@@ -1,0 +1,2 @@
+$ curl -s -S http://localhost:$PORT2/gatsby.txt > downloaded_files/gatsby.txt
+$ exit

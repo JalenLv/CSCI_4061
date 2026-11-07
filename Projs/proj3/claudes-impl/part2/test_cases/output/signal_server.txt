@@ -1,0 +1,3 @@
+$ pkill -INT -f "python3 http_server.py"
+$ exit
+exit

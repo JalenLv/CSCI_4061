@@ -1,0 +1,17 @@
+$ bash test_cases/extra/resources/headers.sh ./http_server 1
+GET /quote.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 68 | body 68 bytes matching quote.txt | closed
+GET /headers.html: HTTP/1.0 200 OK | Content-Type: text/html | Content-Length: 229 | body 229 bytes matching headers.html | closed
+GET /index.html: HTTP/1.0 200 OK | Content-Type: text/html | Content-Length: 359 | body 359 bytes matching index.html | closed
+GET /courses.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 2655 | body 2655 bytes matching courses.txt | closed
+GET /mt2_practice.pdf: HTTP/1.0 200 OK | Content-Type: application/pdf | Content-Length: 147103 | body 147103 bytes matching mt2_practice.pdf | closed
+GET /gatsby.txt: HTTP/1.0 200 OK | Content-Type: text/plain | Content-Length: 299452 | body 299452 bytes matching gatsby.txt | closed
+GET /africa.jpg: HTTP/1.0 200 OK | Content-Type: image/jpeg | Content-Length: 987613 | body 987613 bytes matching africa.jpg | closed
+GET /ocelot.jpg: HTTP/1.0 200 OK | Content-Type: image/jpeg | Content-Length: 1186359 | body 1186359 bytes matching ocelot.jpg | closed
+GET /hard_drive.png: HTTP/1.0 200 OK | Content-Type: image/png | Content-Length: 1681872 | body 1681872 bytes matching hard_drive.png | closed
+GET /Lec01.pdf: HTTP/1.0 200 OK | Content-Type: application/pdf | Content-Length: 2216288 | body 2216288 bytes matching Lec01.pdf | closed
+GET /rain.mp3: HTTP/1.0 200 OK | Content-Type: audio/mpeg | Content-Length: 282282 | body 282282 bytes matching rain.mp3 | closed
+server exited within 5 s of SIGINT
+server exit status: 0
+server printed nothing
+$ exit
+exit

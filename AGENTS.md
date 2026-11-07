@@ -10,8 +10,8 @@ the owner writes themselves. That shapes most of the rules below.
   report results. Don't edit their solutions (lab `code/*.c`, `QUESTIONS.txt`,
   `Projs/*/code/`) unless asked; describe bugs and let them fix them. Reading
   their files is fine.
-- **Agent-owned directories** (`Projs/projN/claudes-impl/`, see Layout) are
-  the exception: agents may edit them freely.
+- **Agent-owned files** (`Projs/projN/claudes-impl/`, `QUESTIONS-answered.md`)
+  are the exception: agents may edit them freely.
 - Don't commit or push unless asked. Check `git log` first for message
   conventions and existing commits. No `Co-Authored-By` on the owner's work
   (any `code/` change, their quiz answers); commit it apart from agent work.
@@ -27,6 +27,7 @@ Projs/projN/desc/          Spec, converted from the Canvas page to projectN.md, 
 Projs/projN/quiz/          Project quiz, converted from Canvas to QUESTIONS.md, plus the agent's answered copy
 Projs/projN/code/          Unpacked starter zip, completed in place (the owner's submission)
 Projs/projN/claudes-impl/  Agent-owned reference implementation, if one was requested
+Quizzes/quizNN/            Weekly quiz, laid out like a project quiz
 ```
 
 The history follows a fixed pattern: `Init labNN` or `Init projN` commits the
@@ -114,6 +115,8 @@ Each lab has a QUIZ and a CODE part; `make zip` builds the Gradescope upload.
   embeds session tokens and the owner's name and email.
 - **Quiz:** `Projs/projN/quiz/QUESTIONS.md`, same skill: `### Question N`, one
   `- [ ]` per choice (the owner marks `[X]`), header like the spec's.
+  The agent's `QUESTIONS-answered.md` adds one `[X]` and a `> **Why:**` citing
+  the source per question.
 - **Grading** (both specs so far; check each new one): quiz 10%, automated
   tests 40% (public plus hidden), oral exam on the submitted code 40%, manual
   error-checking review 10%.
@@ -129,6 +132,13 @@ Each lab has a QUIZ and a CODE part; `make zip` builds the Gradescope upload.
 |---|---|---|---|
 | proj1 | `swish`, a job-control shell: `cd`/`pwd`, `fork`/`exec`, `<` `>` `>>`, process groups, `fg`/`bg`/`wait-for`/`wait-all` | Fri 10/02 11:59pm (Gradescope) | `Projs/proj1/claudes-impl/NOTES.md` |
 | proj2 | `part1/`: `\|` pipelines for `swish` (`pipe()`, `dup2()`, a provided `run_command()`). `part2/`: parallel Hadamard product three ways (pipe, shared memory, threads) as a Python C extension | Fri 10/30 11:59pm (Gradescope); quiz Fri 10/16 | `Projs/proj2/claudes-impl/NOTES.md` |
+
+## Weekly quizzes
+
+`Quizzes/quizNN/` holds the weekly Canvas quiz on the week's lectures and lab,
+converted and answered like a project quiz. The lecture slides aren't in the
+repo; ask the owner where they are (`LecNN <topic>.pdf`). Match "Week N" to
+lectures by the date on each title slide.
 
 ## Pitfalls
 

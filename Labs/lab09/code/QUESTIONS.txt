@@ -31,7 +31,7 @@ QUIZ Questions TCP Socket Programming
   If we will be using 'getaddrinfo()' in preparation for using a TCP
   socket, which value do we use for the 'ai_socktype' field in the
   'hints' struct passed to the system call?
-    - ( ) SOCK_STREAM
+    - (X) SOCK_STREAM
     - ( ) SOCK_DGRAM
     - ( ) SOCK_UDP
     - ( ) SOCK_PUPPET
@@ -41,12 +41,12 @@ QUIZ Questions TCP Socket Programming
     - ( ) bind()
     - ( ) listen()
     - ( ) accept()
-    - ( ) connect()
+    - (X) connect()
 
   When reading from a TCP socket, how do we know when the other process
   has disconnected?
     - ( ) read() returns -1
-    - ( ) read() returns 0
+    - (X) read() returns 0
     - ( ) A signal is delivered to the current process
     - ( ) Trick question: read() will just block forever
 
@@ -54,10 +54,10 @@ QUIZ Questions TCP Socket Programming
     - ( ) Binary data, all in big-endian byte ordering
     - ( ) Binary data, all in little-endian byte ordering
     - ( ) A mix of binary data and text data
-    - ( ) Just text data. Requests and responses are strings.
+    - (X) Just text data. Requests and responses are strings.
 
   What is the meaning of 'GET' in HTTP?
-    - ( ) Retrieve a particular resource from the server
+    - (X) Retrieve a particular resource from the server
     - ( ) Add a new resource for the server to store
     - ( ) Update an existing resource on the server
     - ( ) Delete an existing resource on the server

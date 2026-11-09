@@ -21,8 +21,32 @@ const char *files[] = {"index.html", "gatsby.txt", "ocelot.jpg"};
 // port: Port to connect to
 // Returns a new TCP socket file descriptor on success or -1 on error
 int connect_to_server(const char *host, const char *port) {
-    // TODO Not yet implemented
-    return -1;
+    struct addrinfo hints = {0};
+    struct addrinfo *res = NULL;
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_STREAM;
+    int err = getaddrinfo(host, port, &hints, &res);
+    if (err) {
+        fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(err));
+        return -1;
+    }
+
+    int sock_fd = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
+    if (sock_fd == -1) {
+        perror("socket");
+        freeaddrinfo(res);
+        return -1;
+    }
+
+    if (connect(sock_fd, res->ai_addr, res->ai_addrlen)) {
+        perror("connect");
+        freeaddrinfo(res);
+        close(sock_fd);
+        return -1;
+    }
+
+    freeaddrinfo(res);
+    return sock_fd;
 }
 
 // Writes an HTTP request to a TCP socket
@@ -30,8 +54,22 @@ int connect_to_server(const char *host, const char *port) {
 // file: Name of the file to request from server
 // Returns 0 on success or -1 on error
 int write_http_request(int sock_fd, const char *file) {
-    // TODO Not yet implemented
-    return -1;
+    char buf[BUFSIZE];
+    const char *segs[] = { "GET /", file, " HTTP/1.0\r\n",
+                           "\r\n" };
+    char *dst = buf;
+    for (int i = 0; i < sizeof(segs) / sizeof(const char *); i++) {
+        strcpy(dst, segs[i]);
+        dst += strlen(segs[i]);
+    }
+    *dst = '\0';
+
+    if (write(sock_fd, buf, strlen(buf) + 1) == -1) {
+        perror("write");
+        return -1;
+    }
+
+    return 0;
 }
 
 // Reads an HTTP response from a TCP socket

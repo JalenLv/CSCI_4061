@@ -1,0 +1,101 @@
+                           __________________
+
+                            LAB 10 QUESTIONS
+                           __________________
+
+Lab Instructions
+================
+
+  Follow the instructions below to experiment with topics related to
+  this lab.
+  - For sections marked QUIZ, fill in an (X) for the appropriate
+    response in this file. Use the command 'make test-quiz' to see if
+    all of your answers are correct.
+  - For sections marked CODE, complete the code indicated. Use the
+    command 'make test-code' to check if your code is complete.
+  - DO NOT CHANGE any parts of this file except the QUIZ sections as it
+    may interfere with the tests otherwise.
+  - If your 'QUESTIONS.txt' file seems corrupted, restore it by copying
+    over the 'QUESTIONS.txt.bak' backup file.
+  - When you complete the exercises, check your answers with 'make test'
+    and if all is well, create a zip file with 'make zip' and upload it
+    to Gradescope. Ensure that the autograder there reflects your local
+    results.
+  - IF YOU WORK IN A GROUP only one member needs to submit and then add
+    the names of their group.
+
+
+CODE Semaphore-Based Barrier Implementation
+============================================
+
+  A barrier is a common primitive in parallel computing. It acts as a point of
+  timing synchronization among all of the threads in a group. When a thread
+  arrives at a specific point in its code, the "barrier", it must wait until
+  all other threads have arrived at that same point as well. Once all threads
+  have reached this barrier point, they all may proceed with their execution.
+
+  The most straightforward way to implement a barrier is as a function (or in
+  this lab, a method within a class). Every thread calls this method, which
+  blocks the thread until all other threads have also called the same method.
+  Once every thread has called the barrier method, all threads are unblocked.
+
+  Your task is to implement such a barrier in the file 'sema_barrier.py'. Begin
+  by studying the code in 'sema_barrier.py' Note that the size of the thread
+  group using the barrier is defined as 'N_THREADS' at the top of the file.
+
+  The code defines a 'Barrier' class with a 'wait' method. This method is what
+  gets called by a group of threads and should block each caller until every
+  member of the group has called the method.
+
+  The existing code starts 'N_THREADS' additional threads from the initial main
+  thread and then waits for all of these threads to complete. Meanwhile, the
+  function executed by each thread prints out a message, calls the barrier's
+  'wait' method, and then prints out a second message before terminating.
+
+  Your task is to fill in the missing code in the following locations:
+
+    - In the 'Barrier' class constructor. Initialize the necessary
+      synchronization primitives here.
+    - In the body of the 'wait' method. Use the synchronization primitives you
+      initialized earlier to implement the barrier blocking/unblocking behavior
+      described above.
+
+  Hints:
+
+    - You will need both a lock and a semaphore for the Barrier class. The lock
+      protects reads/writes of the barrier's internal state, and the semaphore
+      is used to block and unblock threads as necessary.
+    - Normally, Python's 'with' keyword is great for locks and semaphores.
+      However, in this situation, it's actually better to manually control when
+      these primitives are acquired and released.
+
+QUIZ Questions 'sema_barrier' Observations
+==========================================
+
+  What should be the initial value of the semaphore in your barrier?
+    - ( ) 0
+    - ( ) 1
+    - ( ) N_THREADS
+    - ( ) None of the Above
+
+  Each new thread is given a unique index, and each of these threads prints its
+  index to the screen before it arrives at the barrier. What do you observe
+  about the order in which these threads execute when you run the program
+  multiple times?
+    - ( ) The threads always get turns in the order in which they were created.
+    - ( ) The threads always get turns in the reverse order in which they were
+          created.
+    - ( ) The threads don't get turns on the CPU in any particular order.
+    - ( ) The threads get turns in a random order, but that order is consistent
+          across multiple runs of the program.
+
+  Each thread also prints out its ID after getting through the barrier. What do
+  you observe about the order in which threads get to leave the barrier when
+  you run the program multiple times?
+    - ( ) The threads always get to leave the barrier in the same order in
+          which they first arrived at the barrier.
+    - ( ) The threads leave the barrier in the reverse of the order in which
+          they arrived at the barrier.
+    - ( ) The threads don't get to leave the barrier in any particular order.
+    - ( ) The threads leave the barrier in a random order, but the order is
+          consistent across multiple runs of the program.

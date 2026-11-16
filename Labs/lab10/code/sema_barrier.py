@@ -13,13 +13,23 @@ class Barrier:
         self.total_threads = total_threads
         self.waiting_threads = 0
         # TODO Add the necessary synchronization primitives
+        self.mutex = threading.Semaphore(1)
+        self.barrier = threading.Semaphore(0)
 
     # When a thread calls 'wait', it will block until all other threads have
     # also reached and started a call to 'wait'. At that point, all threads
     # are allowed to proceed
     def wait(self) -> None:
-        # TODO Complete this function
-        raise NotImplementedError
+        self.mutex.acquire()
+        self.waiting_threads += 1
+        self.mutex.release()
+
+        if self.waiting_threads == self.total_threads:
+            self.barrier.release() # unblock ONE thread
+
+        self.barrier.acquire()
+        # once we are unblocked, it's our duty to unblock the next thread
+        self.barrier.release()
 
 
 def thread_func(index: int, barrier: Barrier) -> None:

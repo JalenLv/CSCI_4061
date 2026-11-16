@@ -73,7 +73,7 @@ QUIZ Questions 'sema_barrier' Observations
 ==========================================
 
   What should be the initial value of the semaphore in your barrier?
-    - ( ) 0
+    - (X) 0
     - ( ) 1
     - ( ) N_THREADS
     - ( ) None of the Above
@@ -86,7 +86,7 @@ QUIZ Questions 'sema_barrier' Observations
     - ( ) The threads always get turns in the reverse order in which they were
           created.
     - ( ) The threads don't get turns on the CPU in any particular order.
-    - ( ) The threads get turns in a random order, but that order is consistent
+    - (X) The threads get turns in a random order, but that order is consistent
           across multiple runs of the program.
 
   Each thread also prints out its ID after getting through the barrier. What do
@@ -96,6 +96,6 @@ QUIZ Questions 'sema_barrier' Observations
           which they first arrived at the barrier.
     - ( ) The threads leave the barrier in the reverse of the order in which
           they arrived at the barrier.
-    - ( ) The threads don't get to leave the barrier in any particular order.
+    - (X) The threads don't get to leave the barrier in any particular order.
     - ( ) The threads leave the barrier in a random order, but the order is
           consistent across multiple runs of the program.

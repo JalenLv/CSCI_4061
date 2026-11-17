@@ -1,13 +1,14 @@
 # CSCI 4061 (Fall 2026) — agent guide
 
-Coursework for UMN CSCI 4061, Introduction to Operating Systems: C systems
-programming on Linux (processes, I/O, signals). Everything here is graded work
-the owner writes themselves. That shapes most of the rules below.
+Coursework for UMN CSCI 4061, Introduction to Operating Systems: C system
+programming on Unix (processes, I/O, signals, IPC, threads, networking) and
+Python (C extensions, threads, sockets). Everything here is graded work the
+owner writes themselves. That shapes most of the rules below.
 
 ## Ground rules
 
 - **The owner does their own coursework.** Explain, review, run tests and
-  report results. Don't edit their solutions (lab `code/*.c`, `QUESTIONS.txt`,
+  report results. Don't edit their solutions (lab `code/`, `QUESTIONS.txt`,
   `Projs/*/code/`) unless asked; describe bugs and let them fix them. Reading
   their files is fine.
 - **Agent-owned files** (`Projs/projN/claudes-impl/`, `QUESTIONS-answered.md`)
@@ -97,7 +98,7 @@ Each lab has a QUIZ and a CODE part; `make zip` builds the Gradescope upload.
 - **QUIZ:** change `( )` to `(X)` in `QUESTIONS.txt` and nothing else.
   `socrates` checks against a hash, so the answers can't be read from the repo.
   `QUESTIONS.txt.bak` is the pristine copy.
-- **CODE:** complete the `.c` files the lab names.
+- **CODE:** complete the files the lab names.
 - **Targets:** `make test-quiz`, `make test-code`, `make test`, `make zip`. The
   targets differ slightly between labs, so check `make help`.
 
@@ -109,6 +110,10 @@ Each lab has a QUIZ and a CODE part; `make zip` builds the Gradescope upload.
 | lab04 | Pipes: `pipe()`, `fork()`, `dup2()` to run `sort -n … \| tail -n 10` |
 | lab05 | Shared memory with `mmap()`, splitting work across forked worker processes |
 | lab06 | A Python C extension: `PyArg_ParseTuple`, building a list to return, `PyErr_*` |
+| lab07 | Threads: `pthread_create()`/`pthread_join()`, a mutex, Thread Sanitizer |
+| lab08 | A bounded producer-consumer queue with a mutex and condition variables |
+| lab09 | A TCP HTTP client: `getaddrinfo()`, `socket()`, `connect()`, an HTTP/1.0 `GET` |
+| lab10 | A semaphore-based barrier with Python `threading` |
 
 ## Projects
 
@@ -152,6 +157,9 @@ lectures by the date on each title slide.
   container before host-side `git clean`, edits or deletes, and never commit
   from inside it: that leaves `.git` root-owned and breaks host git (`chown`
   fixes it). On a permission error, check `find . -user root` first.
+- **Pure-Python labs.** Lab10 has no `make clean`, and plain `make` only prints
+  help. `make clean clean-tests` stops at the missing `clean` without cleaning
+  anything; run `make clean-tests` alone.
 - **Build output.** Lab01 and lab02's `code/` have no `.gitignore`; every
   later one does (binaries, `*.o`, `test_results/`, the submission zip, test
   scratch files). The lab01, lab02 and lab04 zips are tracked.
